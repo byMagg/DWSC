@@ -10,13 +10,13 @@
 				"-g",
 				"${file}",
 				"-o",
-				"/${workspaceFolder}/actividad-1/${fileBasenameNoExtension}",
+				"/${workspaceFolder}/activity-1/${fileBasenameNoExtension}",
 				"${fileDirname}/component.cpp",
 				"${fileDirname}/error.cpp",
 				"${fileDirname}/operations.cpp",
 			],
 			"options": {
-				"cwd": "/${workspaceFolder}/actividad-1/"
+				"cwd": "/${workspaceFolder}/activity-1/"
 			},
 			"problemMatcher": [
 				"$gcc"
