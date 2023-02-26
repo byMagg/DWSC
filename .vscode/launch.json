@@ -5,16 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Launch actividad-1",
+            "name": "(gdb) Launch activity-1",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/${workspaceFolder}/actividad-1/TraderConfigs",
+            "program": "/${workspaceFolder}/activity-1/TraderConfigs",
             "args": [
-                "/${workspaceFolder}/actividad-1/ejemplos/cb.txt",
-                "/${workspaceFolder}/actividad-1/ejemplos/architecture.txt"
+                "/${workspaceFolder}/activity-1/ejemplos/cb.txt",
+                "/${workspaceFolder}/activity-1/ejemplos/architecture.txt"
             ],
             "stopAtEntry": false,
-            "cwd": "/${workspaceFolder}/actividad-1/",
+            "cwd": "/${workspaceFolder}/activity-1/",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
