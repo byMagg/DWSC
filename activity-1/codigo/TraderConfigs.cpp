@@ -274,7 +274,7 @@ int main(int argv, char *argc[])
 	else
 	{
 		path_candidates += argc[1];
-		path_architecture += argc[1];
+		path_architecture += argc[2];
 		printf("%s", path_architecture.c_str());
 	}
 
