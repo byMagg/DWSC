@@ -18,6 +18,8 @@
 #include "TraderConfigs.h"
 #include <iostream>
 
+using namespace std;
+
 char *single_configurations = "single_configurations.out";
 char *long_configurations = "long_configurations.out";
 int error, indice = 0;
@@ -256,22 +258,25 @@ int main(int argv, char *argc[])
 
 #define MAX_NAME_LEN 60 // Maximum len of your name can't be more than 60
 
-	// if (argv != 1)
-	// {
-	// 	error = 0;
-	// 	goto EXIT;
-	// }
+	string path_candidates = "ejemplos/", path_architecture = "ejemplos/";
+	string candidates, architecture;
 
-	char candidates[MAX_NAME_LEN], architecture[MAX_NAME_LEN];
-	char path_candidates[MAX_NAME_LEN] = "ejemplos/", path_architecture[MAX_NAME_LEN] = "ejemplos/";
+	if (argv != 3)
+	{
+		cout << "Nombre de archivo de candidatos en ejemplos/: ";
+		cin >> candidates;
+		path_candidates += candidates;
 
-	std::cout << "Nombre de archivo de candidatos en ejemplos/: ";
-	std::cin.getline(candidates, MAX_NAME_LEN);
-	strcat(path_candidates, candidates);
-
-	std::cout << "Nombre de archivo de arquitectura en ejemplos/: ";
-	std::cin.getline(architecture, MAX_NAME_LEN);
-	strcat(path_architecture, architecture);
+		cout << "Nombre de archivo de arquitectura en ejemplos/: ";
+		cin >> architecture;
+		path_architecture += architecture;
+	}
+	else
+	{
+		path_candidates += argc[1];
+		path_architecture += argc[1];
+		printf("%s", path_architecture.c_str());
+	}
 
 	if ((file1 = fopen(single_configurations, "w+")) == NULL)
 		return 2;
@@ -279,13 +284,13 @@ int main(int argv, char *argc[])
 		return 2;
 	Sol.n = 0;
 	printf("\n   Cargando lista de candidatos......");
-	if ((error = cfg.load_CandidateCollection(path_candidates)) != 0)
+	if ((error = cfg.load_CandidateCollection(&path_candidates[0])) != 0)
 		goto EXIT;
-	printf("\n-- Lista de candidatos cargada (%s).", path_candidates);
+	printf("\n-- Lista de candidatos cargada (%s).", path_candidates.c_str());
 	printf("\n   Cargando arquitectura......");
-	if ((error = cfg.load_ArchitectureComponent(path_architecture)) != 0)
+	if ((error = cfg.load_ArchitectureComponent(&path_architecture[0])) != 0)
 		goto EXIT;
-	printf("\n-- Arquitectura cargada (%s).", path_architecture);
+	printf("\n-- Arquitectura cargada (%s).", path_architecture.c_str());
 	printf("\n   Calculando las configuraciones..... (espere)");
 	if ((error = cfg.configs(0, Sol)) != 0)
 		goto EXIT;
