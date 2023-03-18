@@ -18,10 +18,10 @@ public class XMLibTest {
 	String resultado;
 	@Before
 	public void setUp() throws Exception {
-		Mensaje mensaje = new Mensaje("manelme@outlook.com","nuevo mensaje");
+		Mensaje mensaje = new Mensaje("18/03/2023","alta","hola","holahola");
 		mensajes = new ArrayList<Mensaje>();
 		mensajes.add(mensaje);
-		resultado = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><documentoProductorConsumidor><mensaje><email>manelme@outlook.com</email><elemento>nuevo mensaje</elemento></mensaje></documentoProductorConsumidor>";
+		resultado = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><documentoProductorConsumidor><mensaje><fecha>18/03/2023</fecha><nivelInteres>alta</nivelInteres><descripcionCorta>hola</descripcionCorta><descripcionLarga>holahola</descripcionLarga></mensaje></documentoProductorConsumidor>";
 	}
 
 	@Test

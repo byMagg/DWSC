@@ -45,10 +45,13 @@ public class XMLDecoder {
 	            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 	                    Element eElement = (Element) nNode;
 	                    
-	                    if(eElement.getElementsByTagName("email").getLength() == 0) throw new Exception("Falta el elemento email");
-	                    if(eElement.getElementsByTagName("elemento").getLength() == 0) throw new Exception("Falta el elemento");
+	                    if(eElement.getElementsByTagName("fecha").getLength() == 0) throw new Exception("Falta el elemento fecha");
+	                    if(eElement.getElementsByTagName("nivelInteres").getLength() == 0) throw new Exception("Falta el nivelInteres");
+	                    if(eElement.getElementsByTagName("descripcionCorta").getLength() == 0) throw new Exception("Falta la descripcionCorta");
+	                    if(eElement.getElementsByTagName("descripcionLarga").getLength() == 0) throw new Exception("Falta la descripcionLarga");
+
 	                    
-	                    Mensaje tempMensaje = new Mensaje(eElement.getElementsByTagName("email").item(0).getTextContent(),eElement.getElementsByTagName("elemento").item(0).getTextContent());
+	                    Mensaje tempMensaje = new Mensaje(eElement.getElementsByTagName("fecha").item(0).getTextContent(),eElement.getElementsByTagName("nivelInteres").item(0).getTextContent(),eElement.getElementsByTagName("descripcionCorta").item(0).getTextContent(),eElement.getElementsByTagName("descripcionLarga").item(0).getTextContent());
 	                    salida.add(tempMensaje);
 	             }
 	         }
@@ -92,10 +95,12 @@ public class XMLDecoder {
 	            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 	                    Element eElement = (Element) nNode;
 	                    
-	                    if(eElement.getElementsByTagName("email").getLength() == 0) throw new Exception("Falta el elemento email");
-	                    if(eElement.getElementsByTagName("elemento").getLength() == 0) throw new Exception("Falta el elemento");
-	                    
-	                    Mensaje tempMensaje = new Mensaje(eElement.getElementsByTagName("email").item(0).getTextContent(),eElement.getElementsByTagName("elemento").item(0).getTextContent());
+	                    if(eElement.getElementsByTagName("fecha").getLength() == 0) throw new Exception("Falta el elemento fecha");
+	                    if(eElement.getElementsByTagName("nivelInteres").getLength() == 0) throw new Exception("Falta el nivelInteres");
+	                    if(eElement.getElementsByTagName("descripcionCorta").getLength() == 0) throw new Exception("Falta la descripcionCorta");
+	                    if(eElement.getElementsByTagName("descripcionLarga").getLength() == 0) throw new Exception("Falta la descripcionLarga");
+
+	                    Mensaje tempMensaje = new Mensaje(eElement.getElementsByTagName("fecha").item(0).getTextContent(),eElement.getElementsByTagName("nivelInteres").item(0).getTextContent(),eElement.getElementsByTagName("descripcionCorta").item(0).getTextContent(),eElement.getElementsByTagName("descripcionLarga").item(0).getTextContent());
 	                    salida.add(tempMensaje);
 	             }
 	         }

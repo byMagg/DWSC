@@ -62,19 +62,27 @@ public class XMLCoder {
 			for(int i=0; i<entrada.size();i++){
 			
 				Element mensajeNode = document.createElement("mensaje");
-				Element emailNode = document.createElement("email");
-				Element valorNode = document.createElement("elemento");
-	
-				Text nodeNomValue = document.createTextNode(entrada.get(i).getEmail());
-				Text nodeValueValue = document.createTextNode(entrada.get(i).getElemento());
-	
-				valorNode.appendChild(nodeValueValue);
-				emailNode.appendChild(nodeNomValue);
-	
+				Element fechaNode = document.createElement("fecha");
+				Element nivelInteresNode = document.createElement("nivelInteres");
+				Element descripcionCortaNode = document.createElement("descripcionCorta");
+				Element descripcionLargaNode = document.createElement("descripcionLarga");
+
+				Text nodeFechaValue = document.createTextNode(entrada.get(i).getfecha());
+				Text nodeNivelInteresValue = document.createTextNode(entrada.get(i).getnivelInteres());
+				Text nodeDescripcionCortaValue = document.createTextNode(entrada.get(i).getDescripcionCorta());
+				Text nodeDescripcionLargaValue = document.createTextNode(entrada.get(i).getDescripcionLarga());
+
+				fechaNode.appendChild(nodeFechaValue);
+				nivelInteresNode.appendChild(nodeNivelInteresValue);
+				descripcionCortaNode.appendChild(nodeDescripcionCortaValue);
+				descripcionLargaNode.appendChild(nodeDescripcionLargaValue);
 				
 				raiz.appendChild(mensajeNode);
-				mensajeNode.appendChild(emailNode);
-				mensajeNode.appendChild(valorNode);
+				mensajeNode.appendChild(fechaNode);
+				mensajeNode.appendChild(nivelInteresNode);
+				mensajeNode.appendChild(descripcionCortaNode);
+				mensajeNode.appendChild(descripcionLargaNode);
+
 				
 			}
 			// Generate XML
@@ -110,21 +118,32 @@ public class XMLCoder {
 			
 			// Por cada correo creamos un registro con el valor
 			for(int i=0; i<entrada.size();i++){
-			
+				
 				Element mensajeNode = document.createElement("mensaje");
-				Element emailNode = document.createElement("email");
-				Element valorNode = document.createElement("elemento");
+				Element fechaNode = document.createElement("fecha");
+				Element nivelInteresNode = document.createElement("nivelInteres");
+				Element descripcionCortaNode = document.createElement("descripcionCorta");
+				Element descripcionLargaNode = document.createElement("descripcionLarga");
+
 	
-				Text nodeNomValue = document.createTextNode(entrada.get(i).getEmail());
-				Text nodeValueValue = document.createTextNode(entrada.get(i).getElemento());
+				Text nodeFechaValue = document.createTextNode(entrada.get(i).getfecha());
+				Text nodeNivelInteresValue = document.createTextNode(entrada.get(i).getnivelInteres());
+				Text nodeDescripcionCortaValue = document.createTextNode(entrada.get(i).getDescripcionCorta());
+				Text nodeDescripcionLargaValue = document.createTextNode(entrada.get(i).getDescripcionLarga());
+
 	
-				valorNode.appendChild(nodeValueValue);
-				emailNode.appendChild(nodeNomValue);
-	
+				fechaNode.appendChild(nodeFechaValue);
+				nivelInteresNode.appendChild(nodeNivelInteresValue);
+				descripcionCortaNode.appendChild(nodeDescripcionCortaValue);
+				descripcionLargaNode.appendChild(nodeDescripcionLargaValue);
+
 				
 				raiz.appendChild(mensajeNode);
-				mensajeNode.appendChild(emailNode);
-				mensajeNode.appendChild(valorNode);
+				mensajeNode.appendChild(fechaNode);
+				mensajeNode.appendChild(nivelInteresNode);
+				mensajeNode.appendChild(descripcionCortaNode);
+				mensajeNode.appendChild(descripcionLargaNode);
+
 				
 			}
 			// Generate XML

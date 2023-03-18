@@ -6,74 +6,98 @@ package ual.dss.core;
  */
 public class Mensaje {
 
-	/** The email. */
-	private String email;
+	/** The fecha. */
+	private String fecha;
 	
-	/** The elemento. */
-	private String elemento;
+	/** The nivelInteres. */
+	private String nivelInteres;
+	
+	private String descripcionCorta;
+	
+	private String descripcionLarga;
 	
 	/**
 	 * Instantiates a new mensaje.
 	 */
 	public Mensaje(){
-		email="";
-		elemento="";
+		fecha="";
+		nivelInteres="";
+		setDescripcionCorta("");
+		setDescripcionLarga("");
 	}
 	
 	/**
 	 * Instantiates a new mensaje.
 	 *
-	 * @param email the email
-	 * @param valor the valor
+	 * @param fecha the fecha
+	 * @param nivelInteres the nivelInteres
 	 */
-	public Mensaje(String email, String valor){
-		this.email=email;
-		this.elemento=valor;
+	public Mensaje(String fecha, String nivelInteres, String descripcionCorta, String descripcionLarga){
+		this.fecha=fecha;
+		this.nivelInteres=nivelInteres;
+		this.descripcionCorta=descripcionCorta;
+		this.descripcionLarga=descripcionLarga;
 	}
 
 	/**
-	 * Gets the email.
+	 * Gets the fecha.
 	 *
-	 * @return the email
+	 * @return the fecha
 	 */
-	public String getEmail() {
-		return email;
+	public String getfecha() {
+		return fecha;
 	}
 
 	/**
-	 * Sets the email.
+	 * Sets the fecha.
 	 *
-	 * @param email the new email
+	 * @param fecha the new fecha
 	 */
-	public void setEmail(String email) {
-		this.email = email;
+	public void setfecha(String fecha) {
+		this.fecha = fecha;
 	}
 
 	/**
-	 * Gets the elemento.
+	 * Gets the nivelInteres.
 	 *
-	 * @return the elemento
+	 * @return the nivelInteres
 	 */
-	public String getElemento() {
-		return elemento;
+	public String getnivelInteres() {
+		return nivelInteres;
 	}
 
 	/**
-	 * Sets the elemento.
+	 * Sets the nivelInteres.
 	 *
-	 * @param elemento the new elemento
+	 * @param nivelInteres the new nivelInteres
 	 */
-	public void setElemento(String elemento) {
-		this.elemento = elemento;
+	public void setnivelInteres(String nivelInteres) {
+		this.nivelInteres = nivelInteres;
 	}
+	
+	public String getDescripcionCorta() {
+		return descripcionCorta;
+	}
+
+	public void setDescripcionCorta(String descripcionCorta) {
+		this.descripcionCorta = descripcionCorta;
+	}
+
+	public String getDescripcionLarga() {
+		return descripcionLarga;
+	}
+
+	public void setDescripcionLarga(String descripcionLarga) {
+		this.descripcionLarga = descripcionLarga;
+	}
+	
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Mensaje [email=" + email + ", elemento=" + elemento + "]";
+		return "Mensaje [fecha=" + fecha + ", nivelInteres=" + nivelInteres + ", descripcionCorta=" + descripcionCorta + ", descripcionLarga=" + descripcionLarga + "]";
 	}
-	
 	
 }

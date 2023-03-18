@@ -189,8 +189,10 @@ extends javax.servlet.http.HttpServlet</pre>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../ual/dss/servlet/ServletImpl.html#actionEnviar-java.io.PrintWriter-java.lang.String-java.lang.String-">actionEnviar</a></span>(java.io.PrintWriter&nbsp;out,
-            java.lang.String&nbsp;email,
-            java.lang.String&nbsp;elemento)</code>
+            java.lang.String&nbsp;fecha,
+            java.lang.String&nbsp;nivelInteres,
+            java.lang.String&nbsp;descripcionCorta,
+            java.lang.String&nbsp;descripcionLarga)</code>
 <div class="block">Realiza la accion de [Enviar].</div>
 </td>
 </tr>
@@ -231,8 +233,10 @@ extends javax.servlet.http.HttpServlet</pre>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>private void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../ual/dss/servlet/ServletImpl.html#printForm-java.io.PrintWriter-java.lang.String-java.lang.String-int-">printForm</a></span>(java.io.PrintWriter&nbsp;out,
-         java.lang.String&nbsp;email,
-         java.lang.String&nbsp;elemento,
+         java.lang.String&nbsp;fecha,
+            java.lang.String&nbsp;nivelInteres,
+            java.lang.String&nbsp;descripcionCorta,
+            java.lang.String&nbsp;descripcionLarga,
          int&nbsp;nelementos)</code>
 <div class="block">Imprime el formulario a traves del cual el usuario podra enviar datos y
  por el cual se le mostrara la informacion al usuario.</div>
@@ -331,8 +335,10 @@ extends javax.servlet.http.HttpServlet</pre>
 <li class="blockList">
 <h4>actionEnviar</h4>
 <pre>protected&nbsp;void&nbsp;actionEnviar(java.io.PrintWriter&nbsp;out,
-                            java.lang.String&nbsp;email,
-                            java.lang.String&nbsp;elemento)
+                            java.lang.String&nbsp;fecha,
+            java.lang.String&nbsp;nivelInteres,
+            java.lang.String&nbsp;descripcionCorta,
+            java.lang.String&nbsp;descripcionLarga)
                      throws java.io.IOException</pre>
 <div class="block">Realiza la accion de [Enviar]. Crea un documento XML y se lo pasa al
  objeto CORBA, para que lo almacene en el buffer.</div>
