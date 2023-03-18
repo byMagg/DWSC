@@ -2,7 +2,9 @@ package ual.dss.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -49,7 +51,7 @@ public class ServletImpl extends HttpServlet {
 			if (fecha.isEmpty() || nivelInteres.isEmpty() || descripcionCorta.isEmpty() || descripcionLarga.isEmpty())
 				printResultado(out, "<font color='#DF0101'> Introduce todos los parametros");
 
-			Mensaje mensaje = new Mensaje(fecha, nivelInteres, descripcionCorta, descripcionLarga);
+			Mensaje mensaje = new Mensaje(new Date(), nivelInteres, descripcionCorta, descripcionLarga);
 			List<Mensaje> mensajes = new ArrayList<Mensaje>();
 			mensajes.add(mensaje);
 			// sid.xmlCoder xmlDoc=new sid.xmlCoder(mensaje);
@@ -84,7 +86,7 @@ public class ServletImpl extends HttpServlet {
 	 * @param out Donde se escribira la respuesta de la accion.
 	 */
 	protected void actionLeer(java.io.PrintWriter out) {
-		String fecha = null;
+		Date fecha = null;
 		String nivelInteres = null;
 		String descripcionCorta = null;
 		String descripcionLarga = null;
@@ -104,11 +106,12 @@ public class ServletImpl extends HttpServlet {
 				if (aux.value.compareTo("null") == 0)
 					throw new Exception("No se ha podido leer el elemento del buffer.");
 
+				
 				fecha = mensajesLeidos.get(0).getfecha();
 				nivelInteres = mensajesLeidos.get(0).getnivelInteres();
 				descripcionCorta = mensajesLeidos.get(0).getDescripcionCorta();
 				descripcionLarga = mensajesLeidos.get(0).getDescripcionLarga();
-				printResultado(out, "<font color='#2EFE64'>fecha: " + fecha + ";nivelInteres:" + nivelInteres
+				printResultado(out, "<font color='#2EFE64'>fecha: " +  new SimpleDateFormat("dd/mm/yyyy").format(fecha) + ";nivelInteres:" + nivelInteres
 						+ ";descripcionCorta:" + descripcionCorta + ";descripcionLarga:" + descripcionLarga);
 			} else {
 				printResultado(out, "<font color='#DF0101'>" + aux.value);
@@ -128,7 +131,7 @@ public class ServletImpl extends HttpServlet {
 	 * @param out Donde se escribira la respuesta de la accion.
 	 */
 	protected void actionRecibir(java.io.PrintWriter out) {
-		String fecha = null;
+		Date fecha = null;
 		String nivelInteres = null;
 		String descripcionCorta = null;
 		String descripcionLarga = null;
@@ -152,7 +155,7 @@ public class ServletImpl extends HttpServlet {
 				nivelInteres = mensajesLeidos.get(0).getnivelInteres();
 				descripcionCorta = mensajesLeidos.get(0).getDescripcionCorta();
 				descripcionLarga = mensajesLeidos.get(0).getDescripcionLarga();
-				printResultado(out, "<font color='#2EFE64'>fecha: " + fecha + ";nivelInteres:" + nivelInteres
+				printResultado(out, "<font color='#2EFE64'>fecha: " + new SimpleDateFormat("dd/mm/yyyy").format(fecha) + ";nivelInteres:" + nivelInteres
 						+ ";descripcionCorta:" + descripcionCorta + ";descripcionLarga:" + descripcionLarga);
 			} else {
 				printResultado(out, "<font color='#DF0101'>" + aux.value);
@@ -210,7 +213,7 @@ public class ServletImpl extends HttpServlet {
 		String descripcionLarga = req.getParameter(name4);
 
 		List<Mensaje> mensajes = new ArrayList<Mensaje>();
-		mensajes.add(new Mensaje(fecha, nivelInteres, descripcionCorta, descripcionLarga));
+		mensajes.add(new Mensaje(new Date(), nivelInteres, descripcionCorta, descripcionLarga));
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -285,13 +288,11 @@ public class ServletImpl extends HttpServlet {
 			String descripcionLarga, int nelementos) {
 
 		out.println("<form action='http://localhost:8080/ProductorConsumidor/servlet' method='post'>");
-		out.println("<center><font face='Arial,Helvetica'><font size='-1'>Fecha:</font></font>");
-		out.println("<input name='fecha' size='40'>" + fecha + "</input>");
 		out.println("<center><font face='Arial,Helvetica'><font size='-1'>Nivel de interes:</font></font>");
 		out.println("<select name='nivelInteres'>\n"
-				+ "  <option value='Alta'>Alta</option>\n"
-				+ "  <option value='Media'>Media</option>\n"
-				+ "  <option value='Baja'\">Baja</option>\n"
+				+ "  <option value='alta'>Alta</option>\n"
+				+ "  <option value='media'>Media</option>\n"
+				+ "  <option value='baja'\">Baja</option>\n"
 				+ "</select>" + nivelInteres);
 		out.println(
 				"<p><center><font face='Arial,Helvetica'><font size='-1'>Descripcion Corta:</font></font><textarea name='descripcionCorta' rows='10' cols='50'>"

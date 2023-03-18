@@ -1,5 +1,7 @@
 package ual.dss.core;
 
+import java.util.Date;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class Mensaje.
@@ -7,7 +9,7 @@ package ual.dss.core;
 public class Mensaje {
 
 	/** The fecha. */
-	private String fecha;
+	private Date fecha;
 	
 	/** The nivelInteres. */
 	private String nivelInteres;
@@ -20,10 +22,10 @@ public class Mensaje {
 	 * Instantiates a new mensaje.
 	 */
 	public Mensaje(){
-		fecha="";
+		fecha=new Date();
 		nivelInteres="";
-		setDescripcionCorta("");
-		setDescripcionLarga("");
+		descripcionCorta="";
+		descripcionLarga="";
 	}
 	
 	/**
@@ -32,7 +34,7 @@ public class Mensaje {
 	 * @param fecha the fecha
 	 * @param nivelInteres the nivelInteres
 	 */
-	public Mensaje(String fecha, String nivelInteres, String descripcionCorta, String descripcionLarga){
+	public Mensaje(Date fecha, String nivelInteres, String descripcionCorta, String descripcionLarga){
 		this.fecha=fecha;
 		this.nivelInteres=nivelInteres;
 		this.descripcionCorta=descripcionCorta;
@@ -44,7 +46,7 @@ public class Mensaje {
 	 *
 	 * @return the fecha
 	 */
-	public String getfecha() {
+	public Date getfecha() {
 		return fecha;
 	}
 
@@ -53,7 +55,7 @@ public class Mensaje {
 	 *
 	 * @param fecha the new fecha
 	 */
-	public void setfecha(String fecha) {
+	public void setfecha(Date fecha) {
 		this.fecha = fecha;
 	}
 

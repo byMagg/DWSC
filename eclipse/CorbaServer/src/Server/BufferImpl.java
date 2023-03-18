@@ -53,14 +53,14 @@ class BufferImpl extends _BufferImplBase {
 	// implementa el metodo get()
 	public boolean get(org.omg.CORBA.StringHolder elemento) {
 		int i;
-		if (elementos >= 3) {
+		if (elementos > 0) {
 			elemento.value = buf[0];
 			for (i = 0; i < maxElementos - 1; i++)
 				buf[i] = buf[i + 1];
 			elementos--;
 			return true;
 		} else {
-			elemento.value = "No se puede recibir hasta que no haya mas de 3 mensajes";
+			elemento.value = "No se puede recibir hasta que no haya mensajes";
 			return false;
 		}
 	}
@@ -70,11 +70,11 @@ class BufferImpl extends _BufferImplBase {
 	 */
 	// implementa el metodo read()
 	public boolean read(org.omg.CORBA.StringHolder elemento) {
-		if (elementos >= 3) {
+		if (elementos > 0) {
 			elemento.value = buf[0];
 			return true;
 		} else
-			elemento.value="No se puede leer hasta que no haya mas de 3 mensajes";
+			elemento.value="No se puede leer hasta que no haya mensajes";
 			return false;
 	}
 

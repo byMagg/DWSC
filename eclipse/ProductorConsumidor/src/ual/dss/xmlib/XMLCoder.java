@@ -2,6 +2,7 @@ package ual.dss.xmlib;
 
 import java.io.File;
 import java.io.StringWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -66,8 +67,10 @@ public class XMLCoder {
 				Element nivelInteresNode = document.createElement("nivelInteres");
 				Element descripcionCortaNode = document.createElement("descripcionCorta");
 				Element descripcionLargaNode = document.createElement("descripcionLarga");
-
-				Text nodeFechaValue = document.createTextNode(entrada.get(i).getfecha());
+				
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+				
+				Text nodeFechaValue = document.createTextNode(dateFormat.format(entrada.get(i).getfecha()));
 				Text nodeNivelInteresValue = document.createTextNode(entrada.get(i).getnivelInteres());
 				Text nodeDescripcionCortaValue = document.createTextNode(entrada.get(i).getDescripcionCorta());
 				Text nodeDescripcionLargaValue = document.createTextNode(entrada.get(i).getDescripcionLarga());
@@ -125,8 +128,9 @@ public class XMLCoder {
 				Element descripcionCortaNode = document.createElement("descripcionCorta");
 				Element descripcionLargaNode = document.createElement("descripcionLarga");
 
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
 	
-				Text nodeFechaValue = document.createTextNode(entrada.get(i).getfecha());
+				Text nodeFechaValue = document.createTextNode(dateFormat.format(entrada.get(i).getfecha()));
 				Text nodeNivelInteresValue = document.createTextNode(entrada.get(i).getnivelInteres());
 				Text nodeDescripcionCortaValue = document.createTextNode(entrada.get(i).getDescripcionCorta());
 				Text nodeDescripcionLargaValue = document.createTextNode(entrada.get(i).getDescripcionLarga());

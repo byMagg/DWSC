@@ -24,9 +24,7 @@
 						<form action='http://localhost:8080/ProductorConsumidor/servlet'
 							method='post'>
 							<center>
-								<font face='Arial,Helvetica'><font size='-1'>Fecha:</font></font>
-								<input name='fecha' size='40'> <font
-									face='Arial,Helvetica'><font size='-1'>Nivel de
+								<font size='-1'>Nivel de
 										Interes:</font></font> <select name="nivelInteres">
 									<option value="Alta">Alta</option>
 									<option value="Media">Media</option>
