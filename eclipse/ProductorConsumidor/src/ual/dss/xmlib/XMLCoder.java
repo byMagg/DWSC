@@ -30,6 +30,7 @@ import org.w3c.dom.Text;
 import org.xml.sax.SAXParseException;
 
 import ual.dss.core.Mensaje;
+import ual.dss.core.TipoNivelInteres;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -68,10 +69,10 @@ public class XMLCoder {
 				Element descripcionCortaNode = document.createElement("descripcionCorta");
 				Element descripcionLargaNode = document.createElement("descripcionLarga");
 				
-				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 				
 				Text nodeFechaValue = document.createTextNode(dateFormat.format(entrada.get(i).getfecha()));
-				Text nodeNivelInteresValue = document.createTextNode(entrada.get(i).getnivelInteres());
+				Text nodeNivelInteresValue = document.createTextNode(entrada.get(i).getnivelInteres().toString());
 				Text nodeDescripcionCortaValue = document.createTextNode(entrada.get(i).getDescripcionCorta());
 				Text nodeDescripcionLargaValue = document.createTextNode(entrada.get(i).getDescripcionLarga());
 
@@ -128,10 +129,10 @@ public class XMLCoder {
 				Element descripcionCortaNode = document.createElement("descripcionCorta");
 				Element descripcionLargaNode = document.createElement("descripcionLarga");
 
-				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	
 				Text nodeFechaValue = document.createTextNode(dateFormat.format(entrada.get(i).getfecha()));
-				Text nodeNivelInteresValue = document.createTextNode(entrada.get(i).getnivelInteres());
+				Text nodeNivelInteresValue = document.createTextNode(entrada.get(i).getnivelInteres().toString());
 				Text nodeDescripcionCortaValue = document.createTextNode(entrada.get(i).getDescripcionCorta());
 				Text nodeDescripcionLargaValue = document.createTextNode(entrada.get(i).getDescripcionLarga());
 

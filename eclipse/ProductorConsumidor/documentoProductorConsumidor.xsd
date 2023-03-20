@@ -10,7 +10,15 @@
 	<xsd:complexType name="tipoMensaje">
 		<xsd:sequence>
 			<xsd:element name="fecha" type="xsd:string" />
-			<xsd:element name="nivelInteres" type="xsd:string" />
+			<xsd:element name="nivelInteres">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="Alta"></xsd:enumeration>
+						<xsd:enumeration value="Media"></xsd:enumeration>
+						<xsd:enumeration value="Baja"></xsd:enumeration>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
 			<xsd:element name="descripcionCorta" type="xsd:string" />
 			<xsd:element name="descripcionLarga" type="xsd:string" />
 		</xsd:sequence>

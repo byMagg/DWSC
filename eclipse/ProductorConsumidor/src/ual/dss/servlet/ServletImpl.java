@@ -21,6 +21,7 @@ import org.omg.CosNaming.NamingContextExtHelper;
 import BufferApp.Buffer;
 import BufferApp.BufferHelper;
 import ual.dss.core.Mensaje;
+import ual.dss.core.TipoNivelInteres;
 import ual.dss.xmlib.Validator;
 import ual.dss.xmlib.XMLCoder;
 import ual.dss.xmlib.XMLDecoder;
@@ -43,18 +44,36 @@ public class ServletImpl extends HttpServlet {
 	 * @param nivelInteres El nivelInteres del mensaje.
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	protected void actionEnviar(java.io.PrintWriter out, String fecha, String nivelInteres, String descripcionCorta,
-			String descripcionLarga) throws java.io.IOException {
+	protected void actionEnviar(java.io.PrintWriter out, Date fecha, TipoNivelInteres nivelInteres,
+			String descripcionCorta, String descripcionLarga) throws java.io.IOException {
 		int nelementos = -1;
 		try {
 			getreference();
-			if (fecha.isEmpty() || nivelInteres.isEmpty() || descripcionCorta.isEmpty() || descripcionLarga.isEmpty())
-				printResultado(out, "<font color='#DF0101'> Introduce todos los parametros");
+			String response = "";
+			if (fecha == null || nivelInteres == null || descripcionCorta.isEmpty() || descripcionLarga.isEmpty()) {
+				response += "<font color='#DF0101'> Introduce todos los parametros";
+			} else {
+				if (descripcionCorta.trim().length() < 5) {
+					response += "<font color='#DF0101'> La descripción corta debe ser mayor a 5 carácteres\n";
+				} else if (descripcionCorta.trim().length() > 30) {
+					response += "<font color='#DF0101'> La descripción corta debe ser menor a 30 carácteres\n";
+				}
+				if (descripcionLarga.trim().length() < 20) {
+					response += "<font color='#DF0101'> La descripción larga debe ser mayor a 20 carácteres\n";
+				} else if (descripcionLarga.trim().length() > 500) {
+					response += "<font color='#DF0101'> La descripción corta debe ser menor a 500 carácteres\n";
+				}
+			}
+
+			if (!response.isEmpty()) {
+				printResultado(out, response);
+				return;
+			}
 
 			Mensaje mensaje = new Mensaje(new Date(), nivelInteres, descripcionCorta, descripcionLarga);
 			List<Mensaje> mensajes = new ArrayList<Mensaje>();
 			mensajes.add(mensaje);
-			// sid.xmlCoder xmlDoc=new sid.xmlCoder(mensaje);
+//			 sid.xmlCoder xmlDoc=new sid.xmlCoder(mensaje);
 			String mensajeXML = "";
 			boolean estado = false;
 			try {
@@ -87,7 +106,7 @@ public class ServletImpl extends HttpServlet {
 	 */
 	protected void actionLeer(java.io.PrintWriter out) {
 		Date fecha = null;
-		String nivelInteres = null;
+		TipoNivelInteres nivelInteres = null;
 		String descripcionCorta = null;
 		String descripcionLarga = null;
 		int nelementos = -1;
@@ -106,13 +125,14 @@ public class ServletImpl extends HttpServlet {
 				if (aux.value.compareTo("null") == 0)
 					throw new Exception("No se ha podido leer el elemento del buffer.");
 
-				
 				fecha = mensajesLeidos.get(0).getfecha();
 				nivelInteres = mensajesLeidos.get(0).getnivelInteres();
 				descripcionCorta = mensajesLeidos.get(0).getDescripcionCorta();
 				descripcionLarga = mensajesLeidos.get(0).getDescripcionLarga();
-				printResultado(out, "<font color='#2EFE64'>fecha: " +  new SimpleDateFormat("dd/mm/yyyy").format(fecha) + ";nivelInteres:" + nivelInteres
-						+ ";descripcionCorta:" + descripcionCorta + ";descripcionLarga:" + descripcionLarga);
+				printResultado(out,
+						"<font color='#2EFE64'>fecha: " + new SimpleDateFormat("dd/MM/yyyy").format(fecha)
+								+ ";nivelInteres:" + nivelInteres.toString() + ";descripcionCorta:" + descripcionCorta
+								+ ";descripcionLarga:" + descripcionLarga);
 			} else {
 				printResultado(out, "<font color='#DF0101'>" + aux.value);
 			}
@@ -132,7 +152,7 @@ public class ServletImpl extends HttpServlet {
 	 */
 	protected void actionRecibir(java.io.PrintWriter out) {
 		Date fecha = null;
-		String nivelInteres = null;
+		TipoNivelInteres nivelInteres = null;
 		String descripcionCorta = null;
 		String descripcionLarga = null;
 		int nelementos = -1;
@@ -155,8 +175,10 @@ public class ServletImpl extends HttpServlet {
 				nivelInteres = mensajesLeidos.get(0).getnivelInteres();
 				descripcionCorta = mensajesLeidos.get(0).getDescripcionCorta();
 				descripcionLarga = mensajesLeidos.get(0).getDescripcionLarga();
-				printResultado(out, "<font color='#2EFE64'>fecha: " + new SimpleDateFormat("dd/mm/yyyy").format(fecha) + ";nivelInteres:" + nivelInteres
-						+ ";descripcionCorta:" + descripcionCorta + ";descripcionLarga:" + descripcionLarga);
+				printResultado(out,
+						"<font color='#2EFE64'>fecha: " + new SimpleDateFormat("dd/MM/yyyy").format(fecha)
+								+ ";nivelInteres:" + nivelInteres.toString() + ";descripcionCorta:" + descripcionCorta
+								+ ";descripcionLarga:" + descripcionLarga);
 			} else {
 				printResultado(out, "<font color='#DF0101'>" + aux.value);
 			}
@@ -203,10 +225,10 @@ public class ServletImpl extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse response) throws IOException, ServletException {
 
 		Enumeration elements = req.getParameterNames();
-		String name1 = (String) elements.nextElement(); /** fecha */
-		String fecha = req.getParameter(name1);
+//		String name1 = (String) elements.nextElement(); /** fecha */
+//		String fecha = req.getParameter(name1);
 		String name2 = (String) elements.nextElement(); /** Valor de nivelInteres */
-		String nivelInteres = req.getParameter(name2);
+		TipoNivelInteres nivelInteres = TipoNivelInteres.valueOf(req.getParameter(name2));
 		String name3 = (String) elements.nextElement(); /** Valor de descripcionCorta */
 		String descripcionCorta = req.getParameter(name3);
 		String name4 = (String) elements.nextElement(); /** Valor de descripcionLarga */
@@ -219,7 +241,7 @@ public class ServletImpl extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		if (req.getParameter("action").compareTo("Enviar") == 0)
-			actionEnviar(out, fecha, nivelInteres, descripcionCorta, descripcionLarga);
+			actionEnviar(out, new Date(), nivelInteres, descripcionCorta, descripcionLarga);
 		else if (req.getParameter("action").compareTo("Recibir") == 0)
 			actionRecibir(out);
 		else if (req.getParameter("action").compareTo("Leer") == 0)
@@ -284,16 +306,16 @@ public class ServletImpl extends HttpServlet {
 	 * @param nelementos   Numero de elementos que hay en el buffer. Se usa como
 	 *                     indicador para que el usuario vea el estado del buffer.
 	 */
-	private void printForm(PrintWriter out, String fecha, String nivelInteres, String descripcionCorta,
+	private void printForm(PrintWriter out, String fecha, TipoNivelInteres nivelInteres, String descripcionCorta,
 			String descripcionLarga, int nelementos) {
 
 		out.println("<form action='http://localhost:8080/ProductorConsumidor/servlet' method='post'>");
 		out.println("<center><font face='Arial,Helvetica'><font size='-1'>Nivel de interes:</font></font>");
-		out.println("<select name='nivelInteres'>\n"
-				+ "  <option value='alta'>Alta</option>\n"
-				+ "  <option value='media'>Media</option>\n"
-				+ "  <option value='baja'\">Baja</option>\n"
-				+ "</select>" + nivelInteres);
+		out.println("<select name='nivelInteres'>\n");
+		for (TipoNivelInteres item : TipoNivelInteres.values()) {
+			out.println("<option value='" + item + "'>" + item.toString() + "</option>\n");
+		}
+		out.println("</select>");
 		out.println(
 				"<p><center><font face='Arial,Helvetica'><font size='-1'>Descripcion Corta:</font></font><textarea name='descripcionCorta' rows='10' cols='50'>"
 						+ descripcionCorta + "</textarea></p>");
@@ -332,7 +354,7 @@ public class ServletImpl extends HttpServlet {
 
 		out.print("");
 		printHeader(out);
-		printForm(out, "", "", "", "", bufferImpl.num_elementos());
+		printForm(out, "", null, "", "", bufferImpl.num_elementos());
 		printActions(out);
 		out.println(
 				"<tr><td><br><center><font face='Arial,Helvetica'>" + resultado + "</font></font></center></td></tr>");

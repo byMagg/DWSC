@@ -21,6 +21,7 @@ class BufferImpl extends _BufferImplBase {
 	/** The max elementos. */
 	private static int maxElementos = 5;
 
+
 	/**
 	 * Instantiates a new buffer impl.
 	 */
@@ -84,6 +85,10 @@ class BufferImpl extends _BufferImplBase {
 	public int num_elementos() {
 		
 		return elementos;
+	}
+
+	public static void setMaxElementos(int maxElementos) {
+		BufferImpl.maxElementos = maxElementos;
 	}
 
 	/* (non-Javadoc)

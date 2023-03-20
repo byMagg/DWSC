@@ -19,6 +19,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXParseException;
 
 import ual.dss.core.Mensaje;
+import ual.dss.core.TipoNivelInteres;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -57,11 +58,11 @@ public class XMLDecoder {
 					if (eElement.getElementsByTagName("descripcionLarga").getLength() == 0)
 						throw new Exception("Falta la descripcionLarga");
 					
-					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 					Mensaje tempMensaje = new Mensaje(
 							dateFormat.parse(eElement.getElementsByTagName("fecha").item(0).getTextContent()),
-							eElement.getElementsByTagName("nivelInteres").item(0).getTextContent(),
+							TipoNivelInteres.valueOf(eElement.getElementsByTagName("nivelInteres").item(0).getTextContent()),
 							eElement.getElementsByTagName("descripcionCorta").item(0).getTextContent(),
 							eElement.getElementsByTagName("descripcionLarga").item(0).getTextContent());
 					salida.add(tempMensaje);
@@ -114,11 +115,11 @@ public class XMLDecoder {
 					if (eElement.getElementsByTagName("descripcionLarga").getLength() == 0)
 						throw new Exception("Falta la descripcionLarga");
 					
-					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 					Mensaje tempMensaje = new Mensaje(
 							dateFormat.parse(eElement.getElementsByTagName("fecha").item(0).getTextContent()),
-							eElement.getElementsByTagName("nivelInteres").item(0).getTextContent(),
+							TipoNivelInteres.valueOf(eElement.getElementsByTagName("nivelInteres").item(0).getTextContent()),
 							eElement.getElementsByTagName("descripcionCorta").item(0).getTextContent(),
 							eElement.getElementsByTagName("descripcionLarga").item(0).getTextContent());
 					salida.add(tempMensaje);

@@ -1,5 +1,6 @@
 package ual.dss.core;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 // TODO: Auto-generated Javadoc
@@ -12,7 +13,7 @@ public class Mensaje {
 	private Date fecha;
 	
 	/** The nivelInteres. */
-	private String nivelInteres;
+	private TipoNivelInteres nivelInteres;
 	
 	private String descripcionCorta;
 	
@@ -23,7 +24,7 @@ public class Mensaje {
 	 */
 	public Mensaje(){
 		fecha=new Date();
-		nivelInteres="";
+		nivelInteres=TipoNivelInteres.Alta;
 		descripcionCorta="";
 		descripcionLarga="";
 	}
@@ -34,7 +35,7 @@ public class Mensaje {
 	 * @param fecha the fecha
 	 * @param nivelInteres the nivelInteres
 	 */
-	public Mensaje(Date fecha, String nivelInteres, String descripcionCorta, String descripcionLarga){
+	public Mensaje(Date fecha, TipoNivelInteres nivelInteres, String descripcionCorta, String descripcionLarga){
 		this.fecha=fecha;
 		this.nivelInteres=nivelInteres;
 		this.descripcionCorta=descripcionCorta;
@@ -64,7 +65,7 @@ public class Mensaje {
 	 *
 	 * @return the nivelInteres
 	 */
-	public String getnivelInteres() {
+	public TipoNivelInteres getnivelInteres() {
 		return nivelInteres;
 	}
 
@@ -73,7 +74,7 @@ public class Mensaje {
 	 *
 	 * @param nivelInteres the new nivelInteres
 	 */
-	public void setnivelInteres(String nivelInteres) {
+	public void setnivelInteres(TipoNivelInteres nivelInteres) {
 		this.nivelInteres = nivelInteres;
 	}
 	
@@ -99,7 +100,7 @@ public class Mensaje {
 	 */
 	@Override
 	public String toString() {
-		return "Mensaje [fecha=" + fecha + ", nivelInteres=" + nivelInteres + ", descripcionCorta=" + descripcionCorta + ", descripcionLarga=" + descripcionLarga + "]";
+		return "Mensaje [fecha=" + new SimpleDateFormat("dd/MM/yyyy").format(fecha) + ", nivelInteres=" + nivelInteres.toString() + ", descripcionCorta=" + descripcionCorta + ", descripcionLarga=" + descripcionLarga + "]";
 	}
 	
 }
