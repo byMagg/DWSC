@@ -19,6 +19,8 @@ public interface BufferOperations
    */
   int num_elementos ();
   
+  void setNoticias(int numeroMax);
+  
   /**
    * Introduce elemento en la cola
    *

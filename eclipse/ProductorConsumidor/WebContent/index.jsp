@@ -24,34 +24,35 @@
 						<form action='http://localhost:8080/ProductorConsumidor/servlet'
 							method='post'>
 							<center>
-								<font size='-1'>Nivel de
-										Interes:</font></font> <select name="nivelInteres">
+								<font size='-1'>Nivel de Interes:</font></font> <select
+									name="nivelInteres">
 									<option value="Alta">Alta</option>
 									<option value="Media">Media</option>
 									<option value="Baja">Baja</option>
 								</select>
-								<p>
+								<center>
 									<font face='Arial,Helvetica'><font size='-1'>Descripcion
 											Corta:</font></font>
-									<textarea name='descripcionCorta' rows='10' cols='50'></textarea>
-								</p>
+									<p>
+										<textarea name='descripcionCorta' rows='2' cols='50'></textarea>
+									</p>
+									<center>
+										<font face='Arial,Helvetica'><font size='-1'>Descripcion
+												Larga:</font></font>
 
-								<p>
-									<font face='Arial,Helvetica'><font size='-1'>Descripcion
-											Larga:</font></font>
-
-									<textarea name='descripcionLarga' rows='25' cols='50'></textarea>
-								</p>
-								<p>
-									<input value='Enviar' alt='Press button to export'
-										type='submit' name='action'><input value='Recibir'
-										alt='Press button to export' type='submit' name='action'
-										disabled><input value='Leer'
-										alt='Press button to export' type='submit' name='action'
-										disabled> <input value=' Reset ' type='reset'
-										name='action'>
-								</p>
-							</center>
+										<p>
+											<textarea name='descripcionLarga' rows='10' cols='50'></textarea>
+										</p>
+										<p>
+											<input value='Enviar' alt='Press button to export'
+												type='submit' name='action'><input value='Recibir'
+												alt='Press button to export' type='submit' name='action'
+												disabled><input value='Leer'
+												alt='Press button to export' type='submit' name='action'
+												disabled> <input value=' Reset ' type='reset'
+												name='action'>
+										</p>
+									</center>
 						</form>
 					</td>
 				</tr>

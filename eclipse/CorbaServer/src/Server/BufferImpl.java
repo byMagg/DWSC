@@ -1,5 +1,7 @@
 package Server;
 
+import java.util.Arrays;
+
 import org.omg.CORBA.ORB;
 import BufferApp._BufferImplBase;
 
@@ -8,19 +10,18 @@ import BufferApp._BufferImplBase;
  * The Class BufferImpl.
  */
 class BufferImpl extends _BufferImplBase {
-	
+
 	/** The orb. */
 	private ORB orb;
-	
+
 	/** The buf. */
 	private String buf[];
-	
+
 	/** The elementos. */
 	private int elementos;
-	
+
 	/** The max elementos. */
 	private static int maxElementos = 5;
-
 
 	/**
 	 * Instantiates a new buffer impl.
@@ -31,11 +32,15 @@ class BufferImpl extends _BufferImplBase {
 		elementos = 0;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see BufferApp.BufferOperations#put(java.lang.String)
 	 */
 	// implementa el metodo put()
 	public boolean put(String elemento) {
+		setNoticias(10);
+		System.out.println(maxElementos);
 		if (elementos < maxElementos) {
 			buf[elementos] = elemento;
 			elementos++;
@@ -48,7 +53,9 @@ class BufferImpl extends _BufferImplBase {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see BufferApp.BufferOperations#get(org.omg.CORBA.StringHolder)
 	 */
 	// implementa el metodo get()
@@ -66,7 +73,9 @@ class BufferImpl extends _BufferImplBase {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see BufferApp.BufferOperations#read(org.omg.CORBA.StringHolder)
 	 */
 	// implementa el metodo read()
@@ -75,27 +84,37 @@ class BufferImpl extends _BufferImplBase {
 			elemento.value = buf[0];
 			return true;
 		} else
-			elemento.value="No se puede leer hasta que no haya mensajes";
-			return false;
+			elemento.value = "No se puede leer hasta que no haya mensajes";
+		return false;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see BufferApp.BufferOperations#num_elementos()
 	 */
 	public int num_elementos() {
-		
 		return elementos;
 	}
 
-	public static void setMaxElementos(int maxElementos) {
-		BufferImpl.maxElementos = maxElementos;
-	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see BufferApp.BufferOperations#shutdown()
 	 */
 	// implementa el metodo shutdown()
 	public void shutdown() {
 		orb.shutdown(false);
+	}
+
+	
+	public void setNoticias(int numeroMax) {
+		if(numeroMax > 0) {
+			BufferImpl.maxElementos = numeroMax;
+			String[] tempBuf = Arrays.copyOf(buf, numeroMax);
+			buf = tempBuf.clone();
+		}
+		return;
 	}
 }

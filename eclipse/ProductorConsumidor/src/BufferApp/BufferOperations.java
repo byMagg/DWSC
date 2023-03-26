@@ -11,6 +11,7 @@ package BufferApp;
 public interface BufferOperations 
 {
   int num_elementos ();
+  void setNoticias(int numeroMax);
   boolean put (String elemento);
   boolean get (org.omg.CORBA.StringHolder elemento);
   boolean read (org.omg.CORBA.StringHolder elemento);

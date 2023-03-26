@@ -69,6 +69,7 @@ public class ServletImpl extends HttpServlet {
 				printResultado(out, response);
 				return;
 			}
+	
 
 			Mensaje mensaje = new Mensaje(new Date(), nivelInteres, descripcionCorta, descripcionLarga);
 			List<Mensaje> mensajes = new ArrayList<Mensaje>();
@@ -315,18 +316,13 @@ public class ServletImpl extends HttpServlet {
 		for (TipoNivelInteres item : TipoNivelInteres.values()) {
 			out.println("<option value='" + item + "'>" + item.toString() + "</option>\n");
 		}
-		out.println("</select>");
-		out.println(
-				"<p><center><font face='Arial,Helvetica'><font size='-1'>Descripcion Corta:</font></font><textarea name='descripcionCorta' rows='10' cols='50'>"
-						+ descripcionCorta + "</textarea></p>");
-		out.println(
-				"<p><center><font face='Arial,Helvetica'><font size='-1'>Descripcion Larga:</font></font><textarea name='descripcionLarga' rows='25' cols='50'>"
-						+ descripcionLarga + "</textarea></p>");
-
+		out.println("</select><center><font face='Arial,Helvetica'><font size='-1'>Descripcion Corta:</font></font>");
+		out.println("<p><textarea name='descripcionCorta' rows='2' cols='50'>" + descripcionCorta + "</textarea></p>");
+		out.println("</select><center><font face='Arial,Helvetica'><font size='-1'>Descripcion Larga:</font></font>");
+		out.println("<p><textarea name='descripcionLarga' rows='10' cols='50'>" + descripcionLarga + "</textarea></p>");
 		out.println("<p><b>Numero de elementos en el Buffer: </b>" + nelementos);
-
 	}
-
+	
 	/**
 	 * Escribe en la salida especificada la cabecera de respuesta en formato HTML.
 	 * 
