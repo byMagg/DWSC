@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "BufferServer",
+            "request": "launch",
+            "mainClass": "Server.BufferServer",
+            "projectName": "activity-2-corba"
+        },
+        {
             "name": "(gdb) Launch activity-1",
             "type": "cppdbg",
             "request": "launch",
