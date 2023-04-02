@@ -13,7 +13,13 @@
 			"path": "activity-3"
 		},
 		{
-			"path": "activity-5"
+			"path": "activity-4"
+		},
+		{
+			"path": "activity-5-jpa"
+		},
+		{
+			"path": "activity-5-rest"
 		},
 		{
 			"path": "Servers"
