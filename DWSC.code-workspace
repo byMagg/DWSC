@@ -1,12 +1,28 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": "activity-1"
+		},
+		{
+			"path": "activity-2-corba"
+		},
+		{
+			"path": "activity-2-productorconsumidor"
+		},
+		{
+			"path": "activity-3"
+		},
+		{
+			"path": "activity-5"
+		},
+		{
+			"path": "Servers"
 		}
 	],
 	"settings": {
 		"files.associations": {
 			"iostream": "cpp"
-		}
+		},
+		"java.compile.nullAnalysis.mode": "automatic"
 	}
 }
