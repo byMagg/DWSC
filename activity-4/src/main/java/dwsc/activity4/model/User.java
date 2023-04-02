@@ -1,6 +1,8 @@
 package dwsc.activity4.model;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @JsonPropertyOrder({ "username", "password", "dni", "name", "surnames", "age" })
 public class User {
@@ -57,6 +59,18 @@ public class User {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+	
+	@Override
+	public String toString() {
+		ObjectMapper ow = new ObjectMapper();
+		String json = super.toString();
+		try {
+			json = ow.writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			System.out.println(e.getMessage());
+		}
+		return json;
 	}
 
 }

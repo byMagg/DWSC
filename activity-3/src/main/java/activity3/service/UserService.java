@@ -59,7 +59,7 @@ public class UserService {
 	@Produces("application/text")
 	public Response postUser(User user) {
 		if (user != null) {
-			this.postUserToDB(user);
+			if(this.postUserToDB(user) == null) return Response.status(409).entity("ERROR: Username o DNI repetidos").build();
 			return Response.status(201).entity(user.getUsername()).build();
 		} else {
 			return Response.status(400).build();
@@ -141,17 +141,17 @@ public class UserService {
 		// Connect to database
 		Connection conn = this.connect2DB();
 		// Query the user
+		int numInserted = 0;
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rsCheckRepeated = st.executeQuery("SELECT COUNT(1) FROM sampleusers " + "WHERE username = '"
 					+ user.getUsername() + "' " + "OR dni = '" + user.getDni() + "'");
 			if (rsCheckRepeated.next()) {
 				if((rsCheckRepeated.getInt(1)==0)) {					
-					ResultSet rs = st.executeQuery("INSERT INTO sampleusers (username, password, dni, name, surnames, age)"
+					numInserted = st.executeUpdate("INSERT INTO sampleusers (username, password, dni, name, surnames, age)"
 							+ " VALUES ('" + user.getUsername() + "'" + ", '" + user.getPassword() + "'" + ", '"
 							+ user.getDni() + "'" + ", '" + user.getName() + "'" + ", '" + user.getSurnames() + "'" + ", '"
 							+ user.getAge() + "')");
-					rs.close();
 				}
 			}
 
@@ -162,6 +162,7 @@ public class UserService {
 			System.err.println("[UserService - postUserToDB] SQLException while adding a user");
 			System.err.println(e.getMessage());
 		}
+		if(numInserted == 0) return null;
 		return user;
 	}
 }
