@@ -4,15 +4,6 @@
 			"path": "activity-1"
 		},
 		{
-			"path": "activity-2-corba"
-		},
-		{
-			"path": "activity-2-productorconsumidor"
-		},
-		{
-			"path": "activity-3"
-		},
-		{
 			"path": "activity-4"
 		},
 		{
@@ -29,6 +20,7 @@
 		"files.associations": {
 			"iostream": "cpp"
 		},
-		"java.compile.nullAnalysis.mode": "automatic"
+		"java.compile.nullAnalysis.mode": "automatic",
+		"java.configuration.updateBuildConfiguration": "automatic"
 	}
 }
