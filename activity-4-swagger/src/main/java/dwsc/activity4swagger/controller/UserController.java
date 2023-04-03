@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
-import ch.qos.logback.core.util.IncompatibleClassException;
 import dwsc.activity4swagger.exception.BadGatewayException;
 import dwsc.activity4swagger.exception.CustomResponse;
 import dwsc.activity4swagger.exception.ElementNotFoundException;
