@@ -34,6 +34,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@Operation(summary = "Mostrar tabla de usuarios", description = "Operación para mostrar tabla con info de usuarios")
 	@GetMapping("/userstable")
 	public String getUsersTab(Map<String, Users> model) {
 		Users users = userService.getUsersFromDB();
@@ -89,6 +90,7 @@ public class UserController {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
+	@Operation(summary = "Mostrar tabla de usuario", description = "Operación para mostrar tabla con info de usuario")
 	@GetMapping("/userstable/{username}")
 	public String getUserTab(Map<String, User> model, @PathVariable String username) {
 		User user = userService.getUserFromDb(username);
