@@ -1,0 +1,14 @@
+package dwsc.activity5swagger.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+public class ElementNotFoundException extends ResponseStatusException {
+
+    private static final long serialVersionUID = -174467802521480650L;
+
+    public ElementNotFoundException(HttpStatus code, String message) {
+        super(code, message);
+    }
+
+}
