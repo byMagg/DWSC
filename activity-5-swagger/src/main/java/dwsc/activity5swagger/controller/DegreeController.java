@@ -2,6 +2,7 @@ package dwsc.activity5swagger.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +31,7 @@ public class DegreeController {
 	@ApiResponses({
 			@ApiResponse(responseCode = "200", description = "Degrees obtenidos")
 	})
-	@GetMapping("/degrees")
+	@GetMapping(value = "/degrees", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Iterable<Degree>> getStudents() {
 		return ResponseEntity.ok(degreeRepo.findAll());
 	}
@@ -40,7 +41,7 @@ public class DegreeController {
 			@ApiResponse(responseCode = "200", description = "Degree obtenido"),
 			@ApiResponse(responseCode = "404", description = "Degree no encontrado", content = @Content(schema = @Schema(implementation = CustomResponse.class)))
 	})
-	@GetMapping("/degrees/{code}")
+	@GetMapping(value = "/degrees/{code}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Degree> getDegreeByCode(
 			@Parameter(description = "El código del degree") @PathVariable String code) {
 		Degree degree = degreeRepo.findByCode(code);
@@ -55,7 +56,7 @@ public class DegreeController {
 	@ApiResponses({
 			@ApiResponse(responseCode = "200", description = "Degree eliminado")
 	})
-	@DeleteMapping("/degrees")
+	@DeleteMapping(value = "/degrees", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Degree> deleteDegree(@RequestBody Degree degree) {
 		degreeRepo.delete(degree);
 		return ResponseEntity.ok(degree);
@@ -65,7 +66,7 @@ public class DegreeController {
 	@ApiResponses({
 			@ApiResponse(responseCode = "200", description = "Degree añadido")
 	})
-	@PutMapping("/degrees")
+	@PutMapping(value = "/degrees", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Degree> updateStudent(@RequestBody Degree degree) {
 		return ResponseEntity.ok(degreeRepo.save(degree));
 	}
