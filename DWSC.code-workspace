@@ -16,6 +16,9 @@
 			"path": "activity-5-rest"
 		},
 		{
+			"path": "activity-5-swagger"
+		},
+		{
 			"path": "Servers"
 		}
 	],
