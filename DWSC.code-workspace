@@ -7,13 +7,13 @@
 			"path": "activity-4"
 		},
 		{
+			"path": "activity-4-swagger"
+		},
+		{
 			"path": "activity-5-jpa"
 		},
 		{
 			"path": "activity-5-rest"
-		},
-		{
-			"path": "activity-6"
 		},
 		{
 			"path": "Servers"
