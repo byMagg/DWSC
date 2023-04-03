@@ -1,4 +1,4 @@
-package dwsc.activity4.config;
+package dwsc.activity5.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,8 +15,8 @@ public class OpenApiConfig {
                 return new OpenAPI()
                                 .components(new Components())
                                 .info(new Info()
-                                                .title("Activity 4 API")
-                                                .description("API description for Activity4.")
+                                                .title("Activity 5 API")
+                                                .description("API description for Activity5.")
                                                 .contact(new Contact().name("Daniel Barroso")
                                                                 .url("https://github.com/byMagg")
                                                                 .email("dbu104@inlumine.ual.es"))
