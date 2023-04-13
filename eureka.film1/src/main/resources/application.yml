@@ -1,30 +1,31 @@
 spring:
   application:
-      name: film1
+    name: eureka-film1
 
 server:
   port: ${PORT:${SERVER_PORT:0}}
+
 eureka:
   instance:
-      hostname: localhost
-      instance-id: ${eureka.instance.hostname}:${spring.application.name}:${spring.application.instance_id:${random.value}}
+    hostname: localhost
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${spring.application.instance_id:${random.value}}
+  
   client:
-      service-url:
-          default-zone: http://localhost:8761
+    service-url:
+      default-zone: http://localhost:8761
 
 words: I,You,She,He,It
 
 management:
   info:
-      env:
-          enabled: true
+    env:
+      enabled: true
   endpoints:
-      web:
-          exposure:
-              include: health,info
+    web:
+      exposure:
+        include: health,info
 info:
   application:
-      name: ${spring.application.name}
-      description: This application returns a random subject
-      version: '@project.version@'
-
+    name: ${spring.application.name}
+    description: This application returns a random subject
+    version: '@project.version@'
