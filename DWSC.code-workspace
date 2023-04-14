@@ -10,10 +10,16 @@
 			"path": "activity-6"
 		},
 		{
-			"path": "eureka.server"
+			"path": "eureka-server"
 		},
 		{
-			"path": "eureka.film1"
+			"path": "eureka-film1"
+		},
+		{
+			"path": "eureka-film2"
+		},
+		{
+			"path": "eureka-management"
 		}
 	],
 	"settings": {
