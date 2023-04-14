@@ -22,5 +22,16 @@
 		},
 		"java.compile.nullAnalysis.mode": "automatic",
 		"java.configuration.updateBuildConfiguration": "automatic",
+		"java.jdt.ls.java.home": "/usr/lib/jvm/java-17-openjdk-amd64",
+		"java.configuration.runtimes": [
+			{
+				"name": "JavaSE-11",
+				"path": "/usr/lib/jvm/java-11-openjdk-amd64"
+			},
+			{
+				"name": "JavaSE-17",
+				"path": "/usr/lib/jvm/java-17-openjdk-amd64"
+			}
+		]
 	}
 }
