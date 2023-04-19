@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Film1Application<film1>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "dwsc.eureka.film1.Film1Application",
+            "projectName": "film1",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
