@@ -20,6 +20,12 @@
 		},
 		{
 			"path": "eureka-management"
+		},
+		{
+			"path": "activity-5-jpa"
+		},
+		{
+			"path": "activity-5-rest"
 		}
 	],
 	"settings": {
