@@ -12,12 +12,7 @@ eureka:
   client:
     service-url:
       default-zone: http://localhost:8761
-<<<<<<< HEAD
       
-words: I,You,She,He,It
-=======
->>>>>>> f19116a36a4f58ebead523faac2f319d707fb7ce
-
 management:
   info:
     env:
