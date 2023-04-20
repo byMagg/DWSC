@@ -12,8 +12,6 @@ eureka:
   client:
     service-url:
       default-zone: http://localhost:8761
-      
-words: I,You,She,He,It
 
 management:
   info:
