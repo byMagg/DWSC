@@ -5,9 +5,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.net.http.HttpResponse.BodyHandlers;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,13 +25,14 @@ public class FilmController {
 				.uri(URI.create("https://omdbapi.com/?apikey=95303372&t=" + film)).build();
 
 		ObjectMapper mapper = new ObjectMapper();
-		
+
 		String response = "";
 		try {
 			response = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
 			JsonNode json = mapper.readTree(response);
 			System.out.println(json.get("Response").asText());
-			if(json.get("Response").asText().equals("False")) return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+			if (json.get("Response").asText().equals("False"))
+				return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
