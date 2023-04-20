@@ -1,22 +1,16 @@
 {
 	"folders": [
 		{
-			"path": "activity-1"
+			"path": "eureka-server"
 		},
 		{
-			"path": "activity-4"
+			"path": "eureka-management"
 		},
 		{
-			"path": "activity-5-jpa"
+			"path": "eureka-film1"
 		},
 		{
-			"path": "activity-5-rest"
-		},
-		{
-			"path": "activity-6"
-		},
-		{
-			"path": "Servers"
+			"path": "eureka-film2"
 		}
 	],
 	"settings": {
