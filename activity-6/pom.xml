@@ -14,16 +14,23 @@
 	<name>activity-6</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
+<<<<<<< HEAD
 		<java.version>11</java.version>
+=======
+		<java.version>17</java.version>
+>>>>>>> f19116a36a4f58ebead523faac2f319d707fb7ce
 		<spring-cloud.version>2022.0.2</spring-cloud.version>
 	</properties>
 	<dependencies>
 
+<<<<<<< HEAD
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+=======
+>>>>>>> f19116a36a4f58ebead523faac2f319d707fb7ce
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-config-server</artifactId>
