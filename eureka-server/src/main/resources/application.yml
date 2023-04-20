@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 spring:
   application:
     name: eureka-server
@@ -11,18 +10,4 @@ eureka:
     enable-self-preservation: false
   client:
     register-with-eureka: false
-=======
-spring:
-  application:
-    name: eureka-server
-
-server:
-  port: 8761
-  
-eureka:
-  server:
-    enable-self-preservation: false
-  client:
-    register-with-eureka: false
->>>>>>> f19116a36a4f58ebead523faac2f319d707fb7ce
     fetch-registry: false
