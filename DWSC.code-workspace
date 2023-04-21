@@ -1,16 +1,13 @@
 {
 	"folders": [
 		{
-			"path": "eureka-server"
+			"path": "activity-5-swagger"
 		},
 		{
-			"path": "eureka-management"
+			"path": "activity-4-swagger"
 		},
 		{
-			"path": "eureka-film1"
-		},
-		{
-			"path": "eureka-film2"
+			"path": "activity-6"
 		}
 	],
 	"settings": {
@@ -25,6 +22,7 @@
 				"name": "JavaSE-17",
 				"path": "/usr/lib/jvm/java-17-openjdk-amd64"
 			}
-		]
+		],
+		"maven.view": "hierarchical"
 	}
 }
