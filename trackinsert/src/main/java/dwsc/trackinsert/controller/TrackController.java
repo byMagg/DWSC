@@ -17,9 +17,9 @@ public class TrackController {
 	TrackRepository trackRepo;
 
 	@PostMapping("/tracks")
-	public ResponseEntity<String> insertTrack(@RequestBody Track track) {
+	public ResponseEntity<Track> insertTrack(@RequestBody Track track) {
 		trackRepo.save(track);
-		return new ResponseEntity<>("insertado", HttpStatus.OK);
+		return new ResponseEntity<>(track, HttpStatus.OK);
 
 	}
 }
