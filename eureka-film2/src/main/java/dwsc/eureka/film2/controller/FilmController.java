@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 public class FilmController {
 	@GetMapping("/films/{film}")
-	public ResponseEntity<Boolean> getFilm(@PathVariable String film) {
+	public ResponseEntity<String> getFilm(@PathVariable String film) {
 		HttpClient client = HttpClient.newHttpClient();
 		HttpRequest request = HttpRequest.newBuilder()
 				.uri(URI.create(
@@ -28,19 +28,19 @@ public class FilmController {
 
 		ObjectMapper mapper = new ObjectMapper();
 
-		String response = "";
+		boolean exists = false;
+		
 		try {
-			response = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
+			String response = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
 			JsonNode json = mapper.readTree(response);
 			System.out.println(json.get("total_results").asText());
-			if (json.get("total_results").asText().equals("0"))
-				return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+			if (!json.get("total_results").asText().equals("0")) exists = true;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 
-		return new ResponseEntity<>(true, HttpStatus.OK);
+		return new ResponseEntity<>("MovieDB: " + exists, HttpStatus.OK);
 	}
 }

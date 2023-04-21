@@ -6,6 +6,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,26 +20,26 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class FilmController {
 
 	@GetMapping("/films/{film}")
-	public ResponseEntity<Boolean> getFilm(@PathVariable String film) {
+	public ResponseEntity<String> getFilm(@PathVariable String film) {
 		HttpClient client = HttpClient.newHttpClient();
 		HttpRequest request = HttpRequest.newBuilder().header("Accept", "application/json")
 				.uri(URI.create("https://omdbapi.com/?apikey=95303372&t=" + film)).build();
 
 		ObjectMapper mapper = new ObjectMapper();
-
-		String response = "";
+		
+		boolean exists = false;
+		
 		try {
-			response = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
+			String response = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
 			JsonNode json = mapper.readTree(response);
 			System.out.println(json.get("Response").asText());
-			if (json.get("Response").asText().equals("False"))
-				return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+			if (!json.get("Response").asText().equals("False")) exists = true;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 
-		return new ResponseEntity<>(true, HttpStatus.OK);
+		return new ResponseEntity<>("OMDB: " + exists, HttpStatus.OK);
 	}
 }

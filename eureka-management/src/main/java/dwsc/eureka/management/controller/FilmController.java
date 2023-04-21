@@ -5,19 +5,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import dwsc.eureka.management.dao.Film1;
-import dwsc.eureka.management.dao.Film2;
+import dwsc.eureka.management.dao.Film;
 
 @RestController
 public class FilmController {
 	@Autowired
-	Film1 film1;
-
-	@Autowired
-	Film2 film2;
+	Film filmService;
 
 	@GetMapping("/films/{film}")
 	public String getFilm(@PathVariable String film) {
-		return (film1.getFilm(film) || film2.getFilm(film)) ? "Insertar" : "No insertar";
+		boolean exists = false;
+		
+		try {
+			String result = filmService.getFilm(film);
+			System.out.println(result);
+			if(result != null) {
+				if(result.split(" ")[1].equals("true")) exists = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return exists ? "Insertar" : "No insertar";
 	}
 }

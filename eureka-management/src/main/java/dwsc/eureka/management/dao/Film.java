@@ -4,8 +4,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient("eureka-film1")
-public interface Film1 {
+@FeignClient("eureka-film")
+public interface Film {
 	@GetMapping("/films/{film}")
-	public boolean getFilm(@PathVariable String film);
+	public String getFilm(@PathVariable String film);
 }
