@@ -2,6 +2,21 @@
 	"folders": [
 		{
 			"path": "eureka-server"
+		},
+		{
+			"path": "trackcheck"
+		},
+		{
+			"path": "tracksearch"
+		},
+		{
+			"path": "trackcomment"
+		},
+		{
+			"path": "trackinsert"
+		},
+		{
+			"path": "commentdelete"
 		}
 	],
 	"settings": {
