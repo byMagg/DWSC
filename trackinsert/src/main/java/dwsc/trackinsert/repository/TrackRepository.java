@@ -6,6 +6,6 @@ import dwsc.trackinsert.model.Track;
 
 public interface TrackRepository extends CrudRepository<Track, Long> {
 
-	Track findByName(String name);
+	<S extends Track> S save(S track);
 
 }
