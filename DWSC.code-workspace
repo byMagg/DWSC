@@ -1,13 +1,7 @@
 {
 	"folders": [
 		{
-			"path": "activity-5-swagger"
-		},
-		{
-			"path": "activity-4-swagger"
-		},
-		{
-			"path": "activity-6"
+			"path": "eureka-server"
 		}
 	],
 	"settings": {
