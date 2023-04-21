@@ -1,6 +1,10 @@
 spring:
   application:
     name: tracksearch
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tracks
+    username: postgres
+    password: example
     
 server:
   port: ${PORT:${SERVER_PORT:0}}
