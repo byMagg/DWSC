@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS comment (
   track_id INT NOT NULL,
   author TEXT NOT NULL,
   content TEXT NOT NULL,
+  score INT NOT NULL,
   date TEXT NOT NULL,
   CONSTRAINT fk_track FOREIGN KEY(track_id) REFERENCES track(id)
 )
