@@ -5,5 +5,5 @@ CREATE TABLE IF NOT EXISTS track (
    year VARCHAR,
    score VARCHAR,
    artist VARCHAR,
-   cover VARCHAR,
+   cover VARCHAR
 );
