@@ -1,6 +1,14 @@
 spring:
   application:
     name: commentdelete
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tracks
+    username: postgres
+    password: example
+  jpa:
+    hibernate:
+      ddl-auto: update
+    
     
 server:
   port: ${PORT:${SERVER_PORT:0}}

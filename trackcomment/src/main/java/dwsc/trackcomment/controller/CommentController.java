@@ -20,6 +20,5 @@ public class CommentController {
 	public ResponseEntity<Comment> insertComment(@RequestBody Comment comment) {
 		commentRepo.save(comment);
 		return new ResponseEntity<>(comment, HttpStatus.OK);
-
 	}
 }
