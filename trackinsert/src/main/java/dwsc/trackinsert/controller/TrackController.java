@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import dwsc.trackinsert.dao.TrackCheck;
 import dwsc.trackinsert.model.Track;
 import dwsc.trackinsert.repository.TrackRepository;
 
@@ -15,11 +16,22 @@ public class TrackController {
 
 	@Autowired
 	TrackRepository trackRepo;
+	
+	@Autowired
+	TrackCheck trackCheckClient;
 
 	@PostMapping("/tracks")
 	public ResponseEntity<Track> insertTrack(@RequestBody Track track) {
-		trackRepo.save(track);
-		return new ResponseEntity<>(track, HttpStatus.OK);
+		String name = track.getName();
+		try {
+			boolean exists = trackCheckClient.checkTrackExists(name);
+			System.out.println(exists);
+			if(exists) trackRepo.save(track);
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<>(track, HttpStatus.OK);
 	}
 }

@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient("trackcheck")
 public interface TrackCheck {
-	@GetMapping("/films/{film}")
-	public String getFilm(@PathVariable String film);
+	@GetMapping("/check/{name}")
+	public Boolean checkTrackExists(@PathVariable(value="name") String name);
 }
