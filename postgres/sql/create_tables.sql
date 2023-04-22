@@ -1,6 +1,9 @@
 -- Creation of track table
 CREATE TABLE IF NOT EXISTS track (
    id SERIAL PRIMARY KEY,
-   name VARCHAR
-   --the rest of the columns
+   name VARCHAR,
+   year VARCHAR,
+   score VARCHAR,
+   artist VARCHAR,
+   cover VARCHAR,
 );
