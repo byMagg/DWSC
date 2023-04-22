@@ -1,8 +1,8 @@
-package dwsc.trackcomment.repository;
+package dwsc.trackinsert.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import dwsc.trackcomment.model.Comment;
+import dwsc.trackinsert.model.Comment;
 
 public interface CommentRepository extends CrudRepository<Comment, Long> {
 

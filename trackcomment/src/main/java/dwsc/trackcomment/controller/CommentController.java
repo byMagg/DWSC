@@ -1,4 +1,4 @@
-package dwsc.trackinsert.controller;
+package dwsc.trackcomment.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import dwsc.trackinsert.model.Comment;
-import dwsc.trackinsert.repository.CommentRepository;
+import dwsc.trackcomment.model.Comment;
+import dwsc.trackcomment.repository.CommentRepository;
 
 @RestController
 public class CommentController {

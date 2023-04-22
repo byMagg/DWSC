@@ -1,4 +1,4 @@
-package dwsc.trackinsert.model;
+package dwsc.trackcomment.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,6 +15,7 @@ public class Comment {
     private String author;
     private String content;
     private int score;
+	private String date;
     
     public Long getId() {
 		return id;
@@ -52,6 +53,4 @@ public class Comment {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	private String date;
-
 }
