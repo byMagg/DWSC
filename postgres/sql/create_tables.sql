@@ -16,4 +16,4 @@ CREATE TABLE IF NOT EXISTS comment (
   score INT NOT NULL,
   date TEXT NOT NULL,
   CONSTRAINT fk_track FOREIGN KEY(track_id) REFERENCES track(id)
-)
+);
