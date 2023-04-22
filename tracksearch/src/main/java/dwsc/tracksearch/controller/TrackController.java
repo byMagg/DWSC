@@ -19,7 +19,7 @@ public class TrackController {
 
 	@GetMapping("/tracks/{name}")
 	public ResponseEntity<List<Track>> getTrackByName(@PathVariable String name) {
-		List<Track> tracks = trackRepo.findByName(name);
+		List<Track> tracks = trackRepo.findByNameContains(name);
 		if (tracks != null) {
 			return ResponseEntity.ok(tracks);
 		} else {
