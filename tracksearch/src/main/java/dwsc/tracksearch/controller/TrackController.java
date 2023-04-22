@@ -1,5 +1,7 @@
 package dwsc.tracksearch.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +18,10 @@ public class TrackController {
 	TrackRepository trackRepo;
 
 	@GetMapping("/tracks/{name}")
-	public ResponseEntity<Track> getTrackByName(@PathVariable String name) {
-		Track track = trackRepo.findByName(name);
-		if (track != null) {
-			return ResponseEntity.ok(track);
+	public ResponseEntity<List<Track>> getTrackByName(@PathVariable String name) {
+		List<Track> tracks = trackRepo.findByName(name);
+		if (tracks != null) {
+			return ResponseEntity.ok(tracks);
 		} else {
 			return ResponseEntity.notFound().build();
 		}

@@ -1,9 +1,11 @@
 package dwsc.tracksearch.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import dwsc.tracksearch.model.Track;
 
-public interface TrackRepository extends CrudRepository<Track, Long> {
-	Track findByName(String name);
+public interface TrackRepository extends JpaRepository<Track, Long> {
+	List<Track> findByName(String name);
 }
