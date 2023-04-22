@@ -10,7 +10,7 @@ spring:
       ddl-auto: update
     
 server:
-  port: ${PORT:${SERVER_PORT:0}}
+  port: 8082
 
 eureka:
   instance:
