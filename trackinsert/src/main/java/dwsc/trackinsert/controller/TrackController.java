@@ -26,7 +26,8 @@ public class TrackController {
 		try {
 			boolean exists = trackCheckClient.checkTrackExists(name);
 			System.out.println(exists);
-			if(exists) trackRepo.save(track);
+			if(!exists) return new ResponseEntity<>(track, HttpStatus.NOT_FOUND);
+			trackRepo.save(track);
 
 		} catch (Exception e) {
 			e.printStackTrace();
