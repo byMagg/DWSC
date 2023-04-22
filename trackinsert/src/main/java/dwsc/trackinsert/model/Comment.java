@@ -14,7 +14,7 @@ public class Comment {
     private int track_id;
     private String author;
     private String content;
-    private String score;
+    private int score;
     
     public Long getId() {
 		return id;
@@ -40,10 +40,10 @@ public class Comment {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getScore() {
+	public int getScore() {
 		return score;
 	}
-	public void setScore(String score) {
+	public void setScore(int score) {
 		this.score = score;
 	}
 	public String getDate() {
