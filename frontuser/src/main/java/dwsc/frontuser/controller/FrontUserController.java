@@ -36,7 +36,7 @@ public class FrontUserController {
 		ArrayList<Track> tracks = new ArrayList<Track>();
 		if(name.isBlank()) return "redirect:/";
 		try {
-			tracks.addAll(new ArrayList<Track>(Arrays.asList((new RestTemplate().getForEntity(trackSearchURL + "/seach/" + name, Track[].class).getBody()))));
+			tracks.addAll(new ArrayList<Track>(Arrays.asList((new RestTemplate().getForEntity(trackSearchURL + "/search/" + name, Track[].class).getBody()))));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
