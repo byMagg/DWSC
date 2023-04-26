@@ -1,11 +1,13 @@
 package dwsc.trackinsert.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import dwsc.trackinsert.dao.TrackCheck;
 import dwsc.trackinsert.model.Track;
@@ -29,6 +31,8 @@ public class TrackController {
 			if(!exists) return new ResponseEntity<>(track, HttpStatus.NOT_FOUND);
 			trackRepo.save(track);
 
+		} catch (DataIntegrityViolationException e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error: Faltan parámetros");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

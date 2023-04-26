@@ -1,11 +1,11 @@
 -- Creation of track table
 CREATE TABLE IF NOT EXISTS track (
    id SERIAL PRIMARY KEY,
-   name VARCHAR,
-   year VARCHAR,
+   name VARCHAR NOT NULL,
+   year VARCHAR NOT NULL,
    score VARCHAR,
-   artist VARCHAR,
-   cover VARCHAR
+   artist VARCHAR NOT NULL,
+   cover VARCHAR NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS comment (

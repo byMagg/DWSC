@@ -30,6 +30,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="track : ${tracks}">
+				    <td><img th:src="@{${track.cover}}" alt="Thumbnail" width="100" height="100"/></td>
 					<td th:text="${track.name}"></td>
 					<td th:text="${track.artist}"></td>
 					<td th:text="${track.year}"></td>
