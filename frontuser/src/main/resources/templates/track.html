@@ -9,7 +9,8 @@
 </head>
 <body>
 	<div class="container mt-5">
-
+		<img th:src="@{${track.cover}}" alt="Thumbnail" width="400"
+			height="400" />
 		<h1 th:text="${track.name}">Título</h1>
 		<h1 th:text="${track.artist}">Artista</h1>
 		<h1 th:text="${track.year}">Año</h1>
