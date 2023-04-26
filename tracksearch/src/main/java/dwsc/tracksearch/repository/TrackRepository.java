@@ -8,4 +8,6 @@ import dwsc.tracksearch.model.Track;
 
 public interface TrackRepository extends JpaRepository<Track, Long> {
 	List<Track> findByNameContainsIgnoreCase(String name);
+	Track findById(String id);
+	List<Track> findAll();
 }
