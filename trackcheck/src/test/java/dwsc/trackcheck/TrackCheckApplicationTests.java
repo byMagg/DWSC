@@ -1,10 +1,10 @@
-package dwsc.activity7.eureka.client.sentence;
+package dwsc.trackcheck;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApplicationTests {
+class TrackCheckApplicationTests {
 
 	@Test
 	void contextLoads() {

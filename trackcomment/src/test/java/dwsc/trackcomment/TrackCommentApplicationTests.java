@@ -1,10 +1,10 @@
-package dwsc.activity7eurekaclient;
+package dwsc.trackcomment;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Activity7EurekaclientApplicationTests {
+class TrackCommentApplicationTests {
 
 	@Test
 	void contextLoads() {

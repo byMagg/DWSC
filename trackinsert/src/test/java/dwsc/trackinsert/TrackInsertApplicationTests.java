@@ -1,10 +1,10 @@
-package dwsc.activity7eurekaclient;
+package dwsc.trackinsert;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Activity7EurekaclientApplicationTests {
+class TrackInsertApplicationTests {
 
 	@Test
 	void contextLoads() {
