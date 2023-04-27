@@ -27,20 +27,22 @@ public class FrontUserController {
 			e.printStackTrace();
 		}
 		model.addAttribute("tracks", tracks);
+		model.addAttribute("field", "name");
 		
 		return "index";
 	}
 	
 	@GetMapping("/search")
-	public String searchTrackByName(@RequestParam(name = "name") String name, Model model) {
+	public String searchTrackByField(@RequestParam(defaultValue = "name") String field, @RequestParam String q, Model model) {
 		ArrayList<Track> tracks = new ArrayList<Track>();
-		if(name.isBlank()) return "redirect:/";
+		if(q.isBlank()) return "redirect:/";
 		try {
-			tracks.addAll(new ArrayList<Track>(Arrays.asList((new RestTemplate().getForEntity(trackSearchURL + "/search/" + name, Track[].class).getBody()))));
+			tracks.addAll(new ArrayList<Track>(Arrays.asList((new RestTemplate().getForEntity(trackSearchURL + "/search?field=" + field + "&q=" + q, Track[].class).getBody()))));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		model.addAttribute("tracks", tracks);
+		model.addAttribute("field", field);
 		
 		return "index";
 	}

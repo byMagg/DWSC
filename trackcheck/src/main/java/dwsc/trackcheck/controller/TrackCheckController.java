@@ -24,7 +24,7 @@ public class TrackCheckController {
 		HttpClient client = HttpClient.newHttpClient();
 		HttpRequest request = HttpRequest.newBuilder()
 				.header("Accept", "application/json")
-				.header("Authorization", "Bearer BQBQDbCEKwJmsmuVz9Y0GAED4HHsuMwB3867DiiNMr2Q8Xv7eRWQJes_oqoRnzVmwsuQCNS-kstwRVudFodTLhj0kkLmgXrYvq7rMEmVWXzqAMJDMMiK")
+				.header("Authorization", "Bearer BQBngU0h3a0-SuXSqfjxSRdAJdgDHjMZY8bc4GKeiJmjBQmlHvJv7aPVnT4-NkLJr4ljOf6Cl0sP5OTwz6V1orVWZHylOAtFS-1-pt9XudR5MNnTtgCG")
 				.uri(URI.create("https://api.spotify.com/v1/search?type=track&limit=1&q=" + name)).build();
 
 		ObjectMapper mapper = new ObjectMapper();

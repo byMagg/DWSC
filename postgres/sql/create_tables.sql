@@ -3,8 +3,8 @@ CREATE TABLE IF NOT EXISTS track (
    id SERIAL PRIMARY KEY,
    name VARCHAR NOT NULL,
    year VARCHAR NOT NULL,
-   score VARCHAR,
    artist VARCHAR NOT NULL,
+   score VARCHAR,
    cover VARCHAR NOT NULL
 );
 
