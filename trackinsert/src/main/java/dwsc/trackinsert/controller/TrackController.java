@@ -25,11 +25,13 @@ public class TrackController {
 	@PostMapping("/tracks")
 	public ResponseEntity<Track> insertTrack(@RequestBody Track track) {
 		String name = track.getName();
+		Track savedTrack = null;
 		try {
+			System.out.println(name);
 			boolean exists = trackCheckClient.checkTrackExists(name);
 			System.out.println(exists);
 			if(!exists) return new ResponseEntity<>(track, HttpStatus.NOT_FOUND);
-			trackRepo.save(track);
+			savedTrack = trackRepo.save(track);
 
 		} catch (DataIntegrityViolationException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error: Faltan parámetros");
@@ -37,6 +39,6 @@ public class TrackController {
 			e.printStackTrace();
 		}
 		
-		return new ResponseEntity<>(track, HttpStatus.OK);
+		return new ResponseEntity<>(savedTrack, HttpStatus.OK);
 	}
 }
