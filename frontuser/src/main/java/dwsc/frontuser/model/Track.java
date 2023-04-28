@@ -1,4 +1,4 @@
-package dwsc.tracksearch.model;
+package dwsc.frontuser.model;
 
 public class Track {
 

@@ -1,15 +1,7 @@
-package dwsc.trackcomment.model;
+package dwsc.frontuser.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity
 public class Comment {
 	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int trackId;
     private String author;
@@ -23,6 +15,7 @@ public class Comment {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getAuthor() {
 		return author;
 	}

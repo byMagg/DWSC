@@ -24,15 +24,41 @@
 				</div>
 			</div>
 		</div>
-		<form>
+		<form action="/comments" method="POST"
+			class="container">
 			<div class="mb-3">
-				<label for="exampleInputEmail1" class="form-label">Comentario</label>
-				<textarea class="form-control" id="comment"></textarea>
+				<label for="content" class="form-label">Comentario</label>
+				<textarea class="form-control" id="content" name="content"></textarea>
 			</div>
-			<label for="score" class="form-label">Puntuación</label> <input
-				type="range" class="form-range" min="0" max="5" id="score">
+			<input type="hidden" name="trackId" th:value="${track.id}"
+				id="trackId"> <label for="score" class="form-label">Puntuación</label>
+			<input type="range" class="form-range" min="0" max="5" id="score"
+				name="score">
+			<div class="form-group">
+				<label for="author" class="form-label">Autor</label> <input
+					type="text" class="form-control" name="author" id="author"
+					placeholder="Nombre">
+			</div>
+			<div class="form-group">
+				<label for="date" class="form-label">Fecha</label> <input
+					type="text" class="form-control" name="date" id="date"
+					placeholder="Nombre">
+			</div>
 			<button type="submit" class="btn btn-primary">Enviar</button>
 		</form>
+		
+		<div class="list-group">
+			<a th:each="comment : ${comments}"
+				class="list-group-item list-group-item-action">
+				<div class="d-flex gap-3">
+					<div>
+						<h5 class="mb-1" th:text="${comment.content}"></h5>
+						<p class="mb-1" th:text="${comment.author}"></p>
+						<small th:text="${comment.score}"></small>
+					</div>
+				</div>
+			</a>
+		</div>
 	</div>
 
 </body>
