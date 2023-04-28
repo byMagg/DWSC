@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +30,12 @@ public class CommentController {
 	@GetMapping("/tracks/{trackId}/comments")
 	public ResponseEntity<List<Comment>> getCommentsByTrack(@PathVariable Long trackId) {
 	    List<Comment> comments = commentRepo.findByTrackId(trackId);
+	    return new ResponseEntity<>(comments, HttpStatus.OK);
+	}
+	
+	@GetMapping("/tracks/comments")
+	public ResponseEntity<List<Comment>> getComments() {
+	    List<Comment> comments = commentRepo.findAll();
 	    return new ResponseEntity<>(comments, HttpStatus.OK);
 	}
 }

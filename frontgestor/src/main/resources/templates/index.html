@@ -18,27 +18,47 @@
 		<form action="/tracks" method="POST" class="container">
 			<div class="form-group">
 				<label for="name" class="form-label">Nombre</label> <input
-					type="text" class="form-control" name="name" id="name" placeholder="Nombre">
+					type="text" class="form-control" name="name" id="name"
+					placeholder="Nombre">
 			</div>
 
 			<div class="form-group">
 				<label for="artist" class="form-label">Artista</label> <input
-					type="text" class="form-control" name="artist" id="artist" placeholder="Nombre">
+					type="text" class="form-control" name="artist" id="artist"
+					placeholder="Nombre">
 			</div>
 
 			<div class="form-group">
-				<label for="year" class="form-label">Año</label> <input
-					type="text" class="form-control" name="year" id="year" placeholder="Nombre">
+				<label for="year" class="form-label">Año</label> <input type="text"
+					class="form-control" name="year" id="year" placeholder="Nombre">
 			</div>
 
 			<div class="form-group">
 				<label for="cover" class="form-label">URL Caratula</label> <input
-					type="text" class="form-control" name="cover" id="cover" placeholder="Nombre">
+					type="text" class="form-control" name="cover" id="cover"
+					placeholder="Nombre">
 			</div>
 
 			<button type="submit" class="btn btn-primary">Enviar</button>
 		</form>
 
+		<div class="list-group">
+			<a th:each="comment : ${comments}"
+				class="list-group-item list-group-item-action">
+				<div class="d-flex gap-3">
+					<div>
+						<h5 class="mb-1" th:text="${comment.content}"></h5>
+						<p class="mb-1" th:text="${comment.author}"></p>
+						<small th:text="${comment.score}"></small> <small
+							th:text="${comment.id}"></small>
+
+					</div>
+				</div>
+				<form th:action="@{/tracks/comments/{id}(id=${comment.id})}" method="POST">
+					<button type="submit" class="btn btn-danger">Eliminar</button>
+				</form>
+			</a>
+		</div>
 	</div>
 </body>
 </html>

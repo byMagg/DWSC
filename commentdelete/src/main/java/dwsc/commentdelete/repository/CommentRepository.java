@@ -6,6 +6,5 @@ import dwsc.commentdelete.model.Comment;
 
 public interface CommentRepository extends CrudRepository<Comment, Long> {
 
-	void delete(Comment comment);
-
+	void deleteById(Long id);
 }

@@ -10,6 +10,8 @@ public interface CommentRepository extends CrudRepository<Comment, Long> {
 
 	<S extends Comment> S save(S comment);
 
+	List<Comment> findAll();
+
 	List<Comment> findByTrackId(Long trackId);
 
 }
