@@ -1,22 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "eureka-server"
+			"path": "add-comment"
 		},
 		{
-			"path": "trackcheck"
-		},
-		{
-			"path": "tracksearch"
-		},
-		{
-			"path": "trackcomment"
-		},
-		{
-			"path": "trackinsert"
-		},
-		{
-			"path": "commentdelete"
+			"path": "new-component"
 		}
 	],
 	"settings": {

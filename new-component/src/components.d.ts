@@ -16,10 +16,10 @@ declare global {
     }
     var HTMLMyComponentElement: {
         prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+        new(): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "add-comment": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
@@ -28,14 +28,14 @@ declare namespace LocalJSX {
         "surname"?: string;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "add-comment": MyComponent;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "add-comment": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
 }
