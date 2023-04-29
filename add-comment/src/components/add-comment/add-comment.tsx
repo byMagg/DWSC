@@ -5,52 +5,19 @@ import { Component, Prop, h } from '@stencil/core';
   styleUrl: 'add-comment.css',
   shadow: true,
 })
-export class MyComponent {
+export class AddComment {
   @Prop() endpoint: string;
-  @Prop() trackId: number;
-
-  handleSubmit = (event: Event) => {
-    event.preventDefault();
-    const formData = {
-      trackId: this.trackId,
-    };
-    console.log(formData);
-    fetch(this.endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        // do something with the server response
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  };
-
-  handleTrackIdChange = (event: Event) => {
-    this.trackId = parseInt((event.target as HTMLInputElement).value, 10);
-  };
-
+  @Prop() trackid: number;
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} class="container">
-        <input type="hidden" name="trackId" value={this.trackId} id="trackId" onInput={this.handleTrackIdChange} />
+      <form action={this.endpoint} class="container" method='POST'>
+        <input type="hidden" class="form-control" name="trackid" id="trackid" value={this.trackid} />
         <div class="form-group">
           <label htmlFor="content" class="form-label">
             Comentario
           </label>
-          <textarea class="form-control" id="content" name="content" />
+          <input type="text" class="form-control" name="content" id="content" />
         </div>
         <label htmlFor="score" class="form-label">
           Puntuación

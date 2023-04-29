@@ -7,12 +7,8 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface AddComment {
-        "author": string;
-        "content": string;
-        "date": string;
         "endpoint": string;
-        "score": number;
-        "trackId": number;
+        "trackid": number;
     }
 }
 declare global {
@@ -28,12 +24,8 @@ declare global {
 }
 declare namespace LocalJSX {
     interface AddComment {
-        "author"?: string;
-        "content"?: string;
-        "date"?: string;
         "endpoint"?: string;
-        "score"?: number;
-        "trackId"?: number;
+        "trackid"?: number;
     }
     interface IntrinsicElements {
         "add-comment": AddComment;

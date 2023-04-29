@@ -1,10 +1,2 @@
-<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> <title>Stencil Component Starter</title> <script type="module" src="/build/add-comment.esm.js" data-stencil></script> <script nomodule="" src="/build/add-comment.js" data-stencil></script> </head> <body> <add-comment endpoint="/comments" trackid="1" content="HOLA" score="1" author="hola" date="hola"></add-comment> <script>
-if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-  // auto-unregister service worker during dev mode
-  navigator.serviceWorker.getRegistration().then(function(registration) {
-  if (registration) {
-    registration.unregister().then(function() { location.reload(true) });
-  }
-  });
-}
-</script></body></html>
+<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> <title>Stencil Component Starter</title> <link rel="stylesheet" href="/build/add-comment.css"> <script type="module" data-stencil data-resources-url="/build/" data-stencil-namespace="add-comment">import{p as t,b as a}from"/build/p-1174ce8a.js";export{s as setNonce}from"./p-1174ce8a.js";const e=()=>{const a=import.meta.url;const e={};if(a!==""){e.resourcesUrl=new URL(".",a).href}return t(e)};e().then((t=>a([["p-fafae855",[[1,"add-comment",{endpoint:[1],trackId:[2,"track-id"]}]]]],t)));
+//# sourceMappingURL=add-comment.esm.js.map</script> <script nomodule="" src="/build/add-comment.js" data-stencil></script> </head> <body> <add-comment endpoint="/comments" trackid="1"></add-comment> </body></html>

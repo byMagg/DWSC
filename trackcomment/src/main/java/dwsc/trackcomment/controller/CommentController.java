@@ -27,9 +27,9 @@ public class CommentController {
 		return new ResponseEntity<>(comment, HttpStatus.OK);
 	}
 	
-	@GetMapping("/tracks/{trackId}/comments")
-	public ResponseEntity<List<Comment>> getCommentsByTrack(@PathVariable Long trackId) {
-	    List<Comment> comments = commentRepo.findByTrackId(trackId);
+	@GetMapping("/tracks/{trackid}/comments")
+	public ResponseEntity<List<Comment>> getCommentsByTrack(@PathVariable int trackid) {
+	    List<Comment> comments = commentRepo.findByTrackId(trackid);
 	    return new ResponseEntity<>(comments, HttpStatus.OK);
 	}
 	

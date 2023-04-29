@@ -11,7 +11,7 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int trackId;
+    private int trackid;
     private String author;
     private String content;
     private int score;
@@ -48,9 +48,9 @@ public class Comment {
 		this.date = date;
 	}
 	public int getTrackId() {
-		return trackId;
+		return trackid;
 	}
-	public void setTrackId(int trackId) {
-		this.trackId = trackId;
+	public void setTrackId(int trackid) {
+		this.trackid = trackid;
 	}
 }

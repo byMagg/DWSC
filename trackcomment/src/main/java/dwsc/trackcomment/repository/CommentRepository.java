@@ -12,6 +12,6 @@ public interface CommentRepository extends CrudRepository<Comment, Long> {
 
 	List<Comment> findAll();
 
-	List<Comment> findByTrackId(Long trackId);
+	List<Comment> findByTrackId(int trackId);
 
 }

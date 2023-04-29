@@ -1,10 +1,10 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { MyComponent } from './add-comment';
+import { AddComment } from './add-comment';
 
 describe('add-comment', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
-      components: [MyComponent],
+      components: [AddComment],
       html: '<add-comment></add-comment>',
     });
     expect(root).toEqualHtml(`
@@ -20,7 +20,7 @@ describe('add-comment', () => {
 
   it('renders with values', async () => {
     const { root } = await newSpecPage({
-      components: [MyComponent],
+      components: [AddComment],
       html: `<add-comment first="Stencil" last="'Don't call me a framework' JS"></add-comment>`,
     });
     expect(root).toEqualHtml(`
