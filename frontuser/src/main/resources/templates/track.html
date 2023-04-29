@@ -8,10 +8,11 @@
 	rel="stylesheet"
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
+<script type="module" src="/build/add-comment.esm.js"></script>
+<script nomodule src="/build/add-comment.js"></script>
+
 </head>
 
-<script type="module" src="/build/add-component.esm.js"></script>
-<script nomodule src="/build/add-component.esm.js"></script>
 <body>
 	<div th:include="header.html"></div>
 
@@ -27,16 +28,15 @@
 				</div>
 			</div>
 		</div>
-		<form action="/comments" method="POST"
-			class="container">
+		<form action="/comments" method="POST" class="container">
 			<input type="hidden" name="trackId" th:value="${track.id}"
 				id="trackId">
 			<div class="form-group">
 				<label for="content" class="form-label">Comentario</label>
 				<textarea class="form-control" id="content" name="content"></textarea>
 			</div>
-			 <label for="score" class="form-label">Puntuación</label>
-			<input type="range" class="form-range" min="0" max="5" id="score"
+			<label for="score" class="form-label">Puntuación</label> <input
+				type="range" class="form-range" min="0" max="5" id="score"
 				name="score">
 			<div class="form-group">
 				<label for="author" class="form-label">Autor</label> <input
@@ -50,9 +50,9 @@
 			</div>
 			<button type="submit" class="btn btn-primary">Enviar</button>
 		</form>
-		
-		<add-comment></add-comment>
-		
+
+		<add-comment endpoint="/comments" th:trackid="${track.id}"></add-comment>
+
 		<div class="list-group">
 			<a th:each="comment : ${comments}"
 				class="list-group-item list-group-item-action">
