@@ -3,7 +3,7 @@ package dwsc.frontuser.model;
 public class Comment {
 	
     private Long id;
-    private int trackId;
+    private Long trackid;
     private String author;
     private String content;
     private int score;
@@ -40,10 +40,10 @@ public class Comment {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public int getTrackId() {
-		return trackId;
+	public Long getTrackId() {
+		return trackid;
 	}
-	public void setTrackId(int trackId) {
-		this.trackId = trackId;
+	public void setTrackId(Long trackid) {
+		this.trackid = trackid;
 	}
 }
