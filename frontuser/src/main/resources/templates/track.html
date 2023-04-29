@@ -9,6 +9,9 @@
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
 </head>
+
+<script type="module" src="/build/add-component.esm.js"></script>
+<script nomodule src="/build/add-component.esm.js"></script>
 <body>
 	<div th:include="header.html"></div>
 
@@ -26,12 +29,13 @@
 		</div>
 		<form action="/comments" method="POST"
 			class="container">
-			<div class="mb-3">
+			<input type="hidden" name="trackId" th:value="${track.id}"
+				id="trackId">
+			<div class="form-group">
 				<label for="content" class="form-label">Comentario</label>
 				<textarea class="form-control" id="content" name="content"></textarea>
 			</div>
-			<input type="hidden" name="trackId" th:value="${track.id}"
-				id="trackId"> <label for="score" class="form-label">Puntuación</label>
+			 <label for="score" class="form-label">Puntuación</label>
 			<input type="range" class="form-range" min="0" max="5" id="score"
 				name="score">
 			<div class="form-group">
@@ -46,6 +50,8 @@
 			</div>
 			<button type="submit" class="btn btn-primary">Enviar</button>
 		</form>
+		
+		<add-comment></add-comment>
 		
 		<div class="list-group">
 			<a th:each="comment : ${comments}"

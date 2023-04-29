@@ -1,0 +1,2 @@
+import{p as e,b as t}from"./p-a24ee9c4.js";export{s as setNonce}from"./p-a24ee9c4.js";const o=()=>{const t=import.meta.url;const o={};if(t!==""){o.resourcesUrl=new URL(".",t).href}return e(o)};o().then((e=>t([["p-da1ee019",[[1,"add-comment",{endpoint:[1],trackId:[2,"track-id"],content:[1],score:[2],author:[1],date:[1]}]]]],e)));
+//# sourceMappingURL=add-comment.esm.js.map

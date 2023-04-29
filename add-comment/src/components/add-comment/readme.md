@@ -7,11 +7,14 @@
 
 ## Properties
 
-| Property | Attribute | Description     | Type     | Default     |
-| -------- | --------- | --------------- | -------- | ----------- |
-| `first`  | `first`   | The first name  | `string` | `undefined` |
-| `last`   | `last`    | The last name   | `string` | `undefined` |
-| `middle` | `middle`  | The middle name | `string` | `undefined` |
+| Property   | Attribute  | Description | Type     | Default     |
+| ---------- | ---------- | ----------- | -------- | ----------- |
+| `author`   | `author`   |             | `string` | `undefined` |
+| `content`  | `content`  |             | `string` | `undefined` |
+| `date`     | `date`     |             | `string` | `undefined` |
+| `endpoint` | `endpoint` |             | `string` | `undefined` |
+| `score`    | `score`    |             | `number` | `undefined` |
+| `trackId`  | `track-id` |             | `number` | `undefined` |
 
 
 ----------------------------------------------
