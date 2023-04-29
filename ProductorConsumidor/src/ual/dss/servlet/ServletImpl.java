@@ -26,6 +26,11 @@ import ual.dss.xmlib.Validator;
 import ual.dss.xmlib.XMLCoder;
 import ual.dss.xmlib.XMLDecoder;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class ServletImpl.
@@ -120,8 +125,10 @@ public class ServletImpl extends HttpServlet {
 
 			if (estado) {
 				List<Mensaje> mensajesLeidos = new ArrayList<Mensaje>();
-				mensajesLeidos = XMLDecoder.decodeXML(aux.value, 1);
 				nelementos = bufferImpl.num_elementos();
+				mensajesLeidos = XMLDecoder.decodeXML(aux.value, nelementos);
+				System.out.println(mensajesLeidos);
+				System.out.println(nelementos);
 
 				if (aux.value.compareTo("null") == 0)
 					throw new Exception("No se ha podido leer el elemento del buffer.");
@@ -188,6 +195,26 @@ public class ServletImpl extends HttpServlet {
 		}
 
 	}
+	
+	protected String actionGetAll(java.io.PrintWriter out) {
+		List<Mensaje> mensajesLeidos = new ArrayList<Mensaje>();
+		mensajesLeidos = XMLDecoder.decodeXML("documentoProductorConsumidor");
+		System.out.println(mensajesLeidos.toString());
+		System.out.println("HOLA");
+
+//        FileInputStream fileInputStream = new FileInputStream(new File(filePath));
+//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
+//        StringBuilder stringBuilder = new StringBuilder();
+//        String line;
+//        while ((line = bufferedReader.readLine()) != null) {
+//            stringBuilder.append(line);
+//        }
+//        bufferedReader.close();
+//        fileInputStream.close();
+		
+		return mensajesLeidos.toString();
+
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -200,16 +227,12 @@ public class ServletImpl extends HttpServlet {
 
 		try {
 			response.setContentType("text/html");
+			
+
 
 			java.io.PrintWriter out = response.getWriter();
 
-			out.println("<HTML>");
-			out.println("<HEAD>");
-			out.println("</HEAD>");
-			out.println("<BODY>");
-			out.println("Error! Los parametros no han sido enviados por el metodo POST");
-			out.println("</BODY>");
-			out.println("</HTML>");
+			out.println(actionGetAll(out));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -331,9 +354,34 @@ public class ServletImpl extends HttpServlet {
 	private void printHeader(java.io.PrintWriter out) {
 
 		out.println(
-				"<html><head><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><meta name='Author' content='Luis Iribarne'><meta name='Description' content='University of Almeria (Spain)'><title>Prototipo HTML para el Productor-Consumidor</title></head>");
+				"<html><head><meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'><meta name='Author' content='Luis Iribarne'><meta name='Description' content='University of Almeria (Spain)'><title>Prototipo HTML para el Productor-Consumidor</title><link\n"
+				+ "	href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css\"\n"
+				+ "	rel=\"stylesheet\"\n"
+				+ "	integrity=\"sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ\"\n"
+				+ "	crossorigin=\"anonymous\"></head>");
 		out.println(
-				"<body style='color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);' alink='#990000' link='#043a66' vlink='#999900'><dl>");
+				"<body style='color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);' alink='#990000' link='#043a66' vlink='#999900'>	<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n"
+				+ "		<div class=\"container-fluid\">\n"
+				+ "			<a href=\"http://localhost:8000\" class=\"navbar-brand\"> <i class=\"fas fa-home\"></i>\n"
+				+ "				Inicio\n"
+				+ "			</a>\n"
+				+ "\n"
+				+ "			<button class=\"navbar-toggler\" type=\"button\"\n"
+				+ "				data-bs-toggle=\"collapse\" data-bs-target=\"#navbarNav\"\n"
+				+ "				aria-controls=\"navbarNav\" aria-expanded=\"false\"\n"
+				+ "				aria-label=\"Toggle navigation\">\n"
+				+ "				<span class=\"navbar-toggler-icon\"></span>\n"
+				+ "			</button>\n"
+				+ "			<div class=\"collapse navbar-collapse\" id=\"navbarNav\">\n"
+				+ "				<ul class=\"navbar-nav ms-auto\">\n"
+				+ "					<li class=\"nav-item\"><a class=\"nav-link\"\n"
+				+ "						href=\"http://localhost:8080/ProductorConsumidor/\">Administrador</a></li>\n"
+				+ "					<li class=\"nav-item\"><a class=\"nav-link\"\n"
+				+ "						href=\"http://localhost:8001\">Gestor</a></li>\n"
+				+ "				</ul>\n"
+				+ "			</div>\n"
+				+ "		</div>\n"
+				+ "	</nav><dl>");
 		out.println(
 				"<table nosave='' border='0' cellspacing='5' width='98%'><tbody><tr nosave='' valign='top'><td nosave='' width='100%'><blockquote> </blockquote><center> <b> <font face='Arial,Helvetica'><font color='#660000'><font size='+1'> Registrar Noticia </font></font></font></b></center><br>");
 

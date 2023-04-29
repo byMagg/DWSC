@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import dwsc.frontuser.model.Comment;
@@ -24,6 +25,8 @@ import dwsc.frontuser.model.Track;
 public class FrontUserController {
 	private static String trackSearchURL ="http://localhost:8081";
 	private static String trackCommentURL ="http://localhost:8082";
+	private static String servletURL ="http://localhost:8080/ProductorConsumidor/servlet";
+
 	
 	@GetMapping("/")
 	public String searchList(Model model) {
@@ -92,5 +95,18 @@ public class FrontUserController {
 		}
 		
 		return "redirect:/tracks/" + savedComment.getTrackId();
+	}
+	
+	@GetMapping("/news")
+	public String getNews(Model model) {
+	    try {
+	        ResponseEntity<String> response = new RestTemplate().getForEntity(servletURL, String.class);
+	        String responseBody = response.getBody();
+	        System.out.println(responseBody);
+	        // Haz algo con el cuerpo de la respuesta
+	    } catch (RestClientException e) {
+	        e.printStackTrace();
+	    }
+	    return "index";
 	}
 }
