@@ -1,5 +1,6 @@
 package dwsc.trackcheck.controller;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,14 +18,45 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 public class TrackCheckController {
+	
+	@Bean
+	public void getToken() {
+		String clientId = "533eefa5ec2e4315876edd6eb5926f74";
+		String clientSecret = "f7ea363ba02a4a628fecacf0301c8609";
+
+		HttpClient client = HttpClient.newHttpClient();
+		HttpRequest request = HttpRequest.newBuilder()
+		        .header("Content-Type", "application/x-www-form-urlencoded")
+		        .uri(URI.create("https://accounts.spotify.com/api/token"))
+		        .POST(HttpRequest.BodyPublishers.ofString("grant_type=client_credentials&client_id=" + clientId + "&client_secret=" + clientSecret))
+		        .build();
+
+		try {
+		    HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+		    String responseBody = response.body();
+		    System.out.println(responseBody);
+		    ObjectMapper mapper = new ObjectMapper();
+		    JsonNode json = mapper.readTree(responseBody);
+		    String accessToken = json.get("access_token").asText();
+		    System.out.println("Access token: " + accessToken);
+		    // Aquí se guarda el token en la variable de entorno
+		    System.setProperty("SPOTIFY_TOKEN", accessToken);
+		} catch (IOException e) {
+		    e.printStackTrace();
+		} catch (InterruptedException e) {
+		    e.printStackTrace();
+		}
+	}
 
 	@GetMapping("/check/{name}")
 	public ResponseEntity<Boolean> checkTrackExists(@PathVariable String name) {
 		boolean exists = false;
+		String token = System.getProperty("SPOTIFY_TOKEN");
+		System.out.println(token);
 		HttpClient client = HttpClient.newHttpClient();
 		HttpRequest request = HttpRequest.newBuilder()
 				.header("Accept", "application/json")
-				.header("Authorization", "Bearer BQB2UBwrFNIq6PE4HIDwunIlSfeORWiqmdXKSqWbHeeB29BUpV2zldFGzxD57O6WaMZuAB0vLWX_GQzewN34n2pG7j-bFDxmmgvXsqaTQUhdp1BFiv7l")
+				.header("Authorization", "Bearer " + token)
 				.uri(URI.create("https://api.spotify.com/v1/search?type=track&limit=1&q=" + name)).build();
 
 		ObjectMapper mapper = new ObjectMapper();
