@@ -39,8 +39,13 @@
 					<div>
 						<h5 class="mb-1" th:text="${comment.content}"></h5>
 						<p class="mb-1" th:text="${comment.author}"></p>
-						<small th:text="${comment.score}"></small>
-						<small th:text="${#dates.format(comment.date, 'dd-MM-yyyy')}"></small>
+						<div>
+							<small>Puntuación: </small> <small th:text="${comment.score}"></small>
+						</div>
+						<div>
+							<small>Fecha: </small> <small
+								th:text="${#dates.format(comment.date, 'dd-MM-yyyy')}"></small>
+						</div>
 					</div>
 				</div>
 			</a>

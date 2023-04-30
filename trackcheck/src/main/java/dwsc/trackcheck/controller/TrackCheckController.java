@@ -6,12 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriUtils;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -55,7 +57,7 @@ public class TrackCheckController {
 		HttpRequest request = HttpRequest.newBuilder()
 				.header("Accept", "application/json")
 				.header("Authorization", "Bearer " + token)
-				.uri(URI.create("https://api.spotify.com/v1/search?type=track&limit=1&q=" + name)).build();
+				.uri(URI.create("https://api.spotify.com/v1/search?type=track&limit=1&q=" + UriUtils.encode(name, StandardCharsets.UTF_8))).build();
 
 		ObjectMapper mapper = new ObjectMapper();
 				
