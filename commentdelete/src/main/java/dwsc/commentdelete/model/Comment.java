@@ -9,9 +9,9 @@ import jakarta.persistence.Id;
 public class Comment {
 	
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)	
     private Long id;
-    private int track_id;
+    private Long trackid;
     private String author;
     private String content;
     private int score;
@@ -23,12 +23,7 @@ public class Comment {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public int getTrack_id() {
-		return track_id;
-	}
-	public void setTrack_id(int track_id) {
-		this.track_id = track_id;
-	}
+
 	public String getAuthor() {
 		return author;
 	}
@@ -52,5 +47,11 @@ public class Comment {
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public Long getTrackid() {
+		return trackid;
+	}
+	public void setTrackid(Long trackid) {
+		this.trackid = trackid;
 	}
 }

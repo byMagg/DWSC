@@ -40,10 +40,10 @@ public class Comment {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public Long getTrackId() {
+	public Long getTrackid() {
 		return trackid;
 	}
-	public void setTrackId(Long trackid) {
+	public void setTrackid(Long trackid) {
 		this.trackid = trackid;
 	}
 }

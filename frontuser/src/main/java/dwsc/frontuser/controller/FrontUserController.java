@@ -77,7 +77,7 @@ public class FrontUserController {
 	@PostMapping("/comments")
 	public String insertComment(@ModelAttribute Comment comment , Model model) {
 		Comment savedComment = null;
-		System.out.println(comment.getTrackId());
+		System.out.println(comment.getTrackid());
 		try {
 			RestTemplate restTemplate = new RestTemplate();
 			HttpHeaders headers = new HttpHeaders();
@@ -94,7 +94,7 @@ public class FrontUserController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/tracks/" + savedComment.getTrackId();
+		return "redirect:/tracks/" + savedComment.getTrackid();
 	}
 	
 	@GetMapping("/news")
