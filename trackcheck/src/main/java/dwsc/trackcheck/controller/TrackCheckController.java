@@ -47,8 +47,8 @@ public class TrackCheckController {
 	}
 
 	@GetMapping("/check/{name}")
-	public ResponseEntity<Boolean> checkTrackExists(@PathVariable String name) {
-		boolean exists = false;
+	public ResponseEntity<String> checkTrackExists(@PathVariable String name) {
+		String cover = "";
 		String token = System.getProperty("SPOTIFY_TOKEN");
 		System.out.println(token);
 		HttpClient client = HttpClient.newHttpClient();
@@ -62,12 +62,14 @@ public class TrackCheckController {
 		try {
 			String response = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
 			JsonNode json = mapper.readTree(response);
-			if (!json.get("tracks").get("total").asText().equals("0")) exists = true;
+			if (!json.get("tracks").get("total").asText().equals("0")) {
+				cover = json.get("tracks").get("items").get(0).get("album").get("images").get(0).get("url").asText();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		return new ResponseEntity<>(exists, HttpStatus.OK);
+		return new ResponseEntity<>(cover, HttpStatus.OK);
 	}
 }

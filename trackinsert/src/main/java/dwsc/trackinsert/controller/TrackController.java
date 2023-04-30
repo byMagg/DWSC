@@ -35,9 +35,10 @@ public class TrackController {
 		Track savedTrack = null;
 		try {
 			System.out.println(name);
-			boolean exists = trackCheckClient.checkTrackExists(name);
-			System.out.println(exists);
-			if(!exists) return new ResponseEntity<>(track, HttpStatus.NOT_FOUND);
+			String cover = trackCheckClient.checkTrackExists(name);
+			System.out.println(cover);
+			if(cover.isBlank()) return new ResponseEntity<>(track, HttpStatus.NOT_FOUND);
+			track.setCover(cover);
 			savedTrack = trackRepo.save(track);
 
 		} catch (DataIntegrityViolationException e) {
