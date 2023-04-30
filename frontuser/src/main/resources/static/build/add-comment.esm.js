@@ -1,2 +1,2 @@
-import{p as e,b as t}from"./p-751e1ec3.js";export{s as setNonce}from"./p-751e1ec3.js";const o=()=>{const t=import.meta.url;const o={};if(t!==""){o.resourcesUrl=new URL(".",t).href}return e(o)};o().then((e=>t([["p-4427ca85",[[1,"add-comment",{endpoint:[1],trackid:[2]}]]]],e)));
+import{p as e,b as t}from"./p-751e1ec3.js";export{s as setNonce}from"./p-751e1ec3.js";const o=()=>{const t=import.meta.url;const o={};if(t!==""){o.resourcesUrl=new URL(".",t).href}return e(o)};o().then((e=>t([["p-1a087ab2",[[1,"add-comment",{endpoint:[1],trackid:[2]}]]]],e)));
 //# sourceMappingURL=add-comment.esm.js.map
