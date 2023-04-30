@@ -26,6 +26,7 @@ public class FrontUserController {
 	private static String trackSearchURL ="http://localhost:8081";
 	private static String trackCommentURL ="http://localhost:8082";
 	private static String servletURL ="http://localhost:8080/ProductorConsumidor/servlet";
+	private static String trackInsertURL ="http://localhost:8084";
 
 	
 	@GetMapping("/")
@@ -86,6 +87,8 @@ public class FrontUserController {
 
 			System.out.println(request.getBody().getContent());
 			ResponseEntity<Comment> response = restTemplate.postForEntity(trackCommentURL + "/comment", request, Comment.class);
+			restTemplate.getForEntity(trackInsertURL + "/tracks/" + comment.getTrackid() + "/score", Track.class).getBody();
+
 			savedComment = response.getBody();
 			System.out.println(savedComment.getId());
 			
