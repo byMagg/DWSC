@@ -34,12 +34,10 @@ public class TrackCheckController {
 		try {
 		    HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 		    String responseBody = response.body();
-		    System.out.println(responseBody);
 		    ObjectMapper mapper = new ObjectMapper();
 		    JsonNode json = mapper.readTree(responseBody);
 		    String accessToken = json.get("access_token").asText();
 		    System.out.println("Access token: " + accessToken);
-		    // Aquí se guarda el token en la variable de entorno
 		    System.setProperty("SPOTIFY_TOKEN", accessToken);
 		} catch (IOException e) {
 		    e.printStackTrace();
