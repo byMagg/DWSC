@@ -30,7 +30,7 @@ public class TrackController {
 	}
 
 	@GetMapping("/tracks/{id}")
-	public ResponseEntity<Track> getTrackById(@PathVariable Long id) {
+	public ResponseEntity<Track> getTrackById(@PathVariable int id) {
 		Optional<Track> track = trackRepo.findById(id);
 		if (track != null) {
 			return ResponseEntity.ok(track.get());
@@ -48,7 +48,7 @@ public class TrackController {
 		} else if (field.equals("artist")) {
 			tracks = trackRepo.findByArtistContainsIgnoreCase(q);
 		} else if (field.equals("year")) {
-			tracks = trackRepo.findByYearContainsIgnoreCase(q);
+			tracks = trackRepo.findByYear(Integer.parseInt(q));
 		}
 		
 		if (tracks != null) {

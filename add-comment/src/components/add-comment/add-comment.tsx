@@ -14,26 +14,16 @@ export class AddComment {
       <form action={this.endpoint} class="container" method='POST'>
         <input type="hidden" class="form-control" name="trackid" id="trackid" value={this.trackid} />
         <div class="form-group">
-          <label htmlFor="content" class="form-label">
-            Comentario
-          </label>
-          <input type="text" class="form-control" name="content" id="content" />
-        </div>
-        <label htmlFor="score" class="form-label">
-          Puntuación
-        </label>
-        <input type="range" class="form-range" min="0" max="5" id="score" name="score" />
-        <div class="form-group">
-          <label htmlFor="author" class="form-label">
-            Autor
-          </label>
-          <input type="text" class="form-control" name="author" id="author" placeholder="Nombre" />
+          <input type="text" class="form-control" name="author" id="author" placeholder="Autor" />
         </div>
         <div class="form-group">
-          <label htmlFor="date" class="form-label">
-            Fecha
+          <input type="text" class="form-control" name="content" id="content" placeholder='Añade un comentario' />
+        </div>
+        <div class="form-group">
+          <label htmlFor="score" class="form-label">
+            Puntuación
           </label>
-          <input type="text" class="form-control" name="date" id="date" placeholder="Nombre" />
+          <input type="range" class="form-range" min="0" max="5" id="score" name="score" />
         </div>
         <button type="submit" class="btn btn-primary">
           Enviar

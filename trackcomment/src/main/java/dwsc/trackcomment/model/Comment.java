@@ -1,5 +1,9 @@
 package dwsc.trackcomment.model;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,17 +14,18 @@ public class Comment {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long trackid;
+    private int id;
+    private int trackid;
     private String author;
     private String content;
     private int score;
-	private String date;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+	private Date date;
     
-    public Long getId() {
+    public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getAuthor() {
@@ -41,16 +46,16 @@ public class Comment {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
-	public Long getTrackid() {
+	public int getTrackid() {
 		return trackid;
 	}
-	public void setTrackid(Long trackid) {
+	public void setTrackid(int trackid) {
 		this.trackid = trackid;
 	}
 }

@@ -2,26 +2,26 @@ package dwsc.frontgestor.model;
 
 public class Track {
 
-    private Long id;
+    private int id;
     private String name;
-    private String year;
-    private String score;
+    private int year;
+    private double score;
     private String artist;
     private String cover;
 
-    public String getYear() {
+    public int getYear() {
 		return year;
 	}
 
-	public void setYear(String year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
 
-	public String getScore() {
+	public double getScore() {
 		return score;
 	}
 
-	public void setScore(String score) {
+	public void setScore(double score) {
 		this.score = score;
 	}
 
@@ -41,11 +41,11 @@ public class Track {
 		this.cover = cover;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -7,10 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import dwsc.tracksearch.model.Track;
 
-public interface TrackRepository extends JpaRepository<Track, Long> {
+public interface TrackRepository extends JpaRepository<Track, Integer> {
 	List<Track> findByNameContainsIgnoreCase(String name);
 	List<Track> findByArtistContainsIgnoreCase(String artist);
-	List<Track> findByYearContainsIgnoreCase(String year);
-	Optional<Track> findById(Long id);
+	List<Track> findByYear(int year);
+	Optional<Track> findById(int id);
 	List<Track> findAll();
 }

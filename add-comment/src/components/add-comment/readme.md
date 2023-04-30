@@ -10,7 +10,7 @@
 | Property   | Attribute  | Description | Type     | Default     |
 | ---------- | ---------- | ----------- | -------- | ----------- |
 | `endpoint` | `endpoint` |             | `string` | `undefined` |
-| `trackId`  | `track-id` |             | `string` | `undefined` |
+| `trackid`  | `trackid`  |             | `number` | `undefined` |
 
 
 ----------------------------------------------

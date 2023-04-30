@@ -50,7 +50,7 @@ public class TrackController {
 	}
 	
 	@GetMapping("/tracks/{id}/score")
-	public ResponseEntity<Track> updateScore(@PathVariable Long id) {
+	public ResponseEntity<Track> updateScore(@PathVariable int id) {
 		double mean = 0;
 		Track track = null;
 		try {
@@ -58,7 +58,7 @@ public class TrackController {
 	        if (optionalTrack.isPresent()) {
 	        	track = optionalTrack.get();
 				mean = new RestTemplate().getForEntity(trackCommentURL + "/tracks/" + id + "/score", Double.class).getBody();
-	            track.setScore(Double.toString(mean));
+	            track.setScore(mean);
 	            trackRepo.save(track);
 	            System.out.println(mean);
 	        }

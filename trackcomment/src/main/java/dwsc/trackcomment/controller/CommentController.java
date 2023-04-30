@@ -1,6 +1,6 @@
 package dwsc.trackcomment.controller;
 
-import java.util.Iterator;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import dwsc.trackcomment.model.Comment;
 import dwsc.trackcomment.repository.CommentRepository;
@@ -24,12 +23,13 @@ public class CommentController {
 	
 	@PostMapping("/comment")
 	public ResponseEntity<Comment> insertComment(@RequestBody Comment comment) {
+		comment.setDate(new Date());
 		commentRepo.save(comment);
 		return new ResponseEntity<>(comment, HttpStatus.OK);
 	}
 	
 	@GetMapping("/tracks/{trackid}/comments")
-	public ResponseEntity<List<Comment>> getCommentsByTrack(@PathVariable Long trackid) {
+	public ResponseEntity<List<Comment>> getCommentsByTrack(@PathVariable int trackid) {
 	    List<Comment> comments = commentRepo.findByTrackid(trackid);
 	    return new ResponseEntity<>(comments, HttpStatus.OK);
 	}
@@ -41,7 +41,7 @@ public class CommentController {
 	}
 	
 	@GetMapping("/tracks/{trackid}/score")
-	public ResponseEntity<Double> getCommentsScore(@PathVariable Long trackid) {
+	public ResponseEntity<Double> getCommentsScore(@PathVariable int trackid) {
 	    List<Comment> comments = commentRepo.findByTrackid(trackid);
 	    double mean = 0;
 	    for (Comment comment : comments) {
