@@ -43,15 +43,20 @@
 				<div class="d-flex gap-3">
 					<div>
 						<h5 class="mb-1" th:text="${comment.content}"></h5>
-						<p class="mb-1" th:text="${comment.author}"></p>
-						<small>Puntuación: </small> <small th:text="${comment.score}"></small>
-
+						<p class="mb-1" th:text="'@' + ${comment.author}"></p>
+						<div>
+							<small th:text="'Puntuación: ' + ${comment.score}"></small>
+						</div>
+						<div>
+							<small
+								th:text="'Fecha: ' + ${#dates.format(comment.date, 'dd-MM-yyyy')}"></small>
+						</div>
 					</div>
+					<form th:action="@{/tracks/comments/{id}(id=${comment.id})}"
+						style="position: absolute; right: 50px; top: 42px;" method="POST">
+						<button type="submit" class="btn btn-danger">Eliminar</button>
+					</form>
 				</div>
-				<form th:action="@{/tracks/comments/{id}(id=${comment.id})}"
-					style="position: absolute; right: 50px; top: 30px;" method="POST">
-					<button type="submit" class="btn btn-danger">Eliminar</button>
-				</form>
 			</a>
 		</div>
 	</div>
