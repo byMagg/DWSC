@@ -1,10 +1,10 @@
-package dwsc.activity7;
+package dwsc.eureka.server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Activity7ApplicationTests {
+class EurekaserverApplicationTests {
 
 	@Test
 	void contextLoads() {
