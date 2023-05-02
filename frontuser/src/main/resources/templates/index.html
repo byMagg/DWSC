@@ -40,7 +40,8 @@
 			</div>
 		</form>
 
-		<div class="container d-flex justify-content-around" style="margin-bottom: 35px;">
+		<div class="container d-flex justify-content-around"
+			style="margin-bottom: 35px;">
 			<div class="list-group col-7">
 				<a th:each="track : ${tracks}"
 					th:href="@{/tracks/{id}(id=${track.id})}"
@@ -60,6 +61,7 @@
 			</div>
 
 			<div class="list-group col-3">
+				<h3>Noticias</h3>
 				<a th:each="mensaje : ${mensajes}"
 					class="list-group-item list-group-item-action">
 					<div class="d-flex gap-3">
