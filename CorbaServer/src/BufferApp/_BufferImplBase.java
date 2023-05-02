@@ -24,7 +24,8 @@ public abstract class _BufferImplBase extends org.omg.CORBA.portable.ObjectImpl
     _methods.put ("put", new java.lang.Integer (1));
     _methods.put ("get", new java.lang.Integer (2));
     _methods.put ("read", new java.lang.Integer (3));
-    _methods.put ("shutdown", new java.lang.Integer (4));
+    _methods.put ("readAll", new java.lang.Integer (4));
+    _methods.put ("shutdown", new java.lang.Integer (5));
   }
 
   public org.omg.CORBA.portable.OutputStream _invoke (String $method,
@@ -79,7 +80,18 @@ public abstract class _BufferImplBase extends org.omg.CORBA.portable.ObjectImpl
          break;
        }
 
-       case 4:  // BufferApp/Buffer/shutdown
+       case 4:  // BufferApp/Buffer/readAll
+       {
+         org.omg.CORBA.StringHolder elemento = new org.omg.CORBA.StringHolder ();
+         boolean $result = false;
+         $result = this.readAll (elemento);
+         out = $rh.createReply();
+         out.write_boolean ($result);
+         out.write_string (elemento.value);
+         break;
+       }
+
+       case 5:  // BufferApp/Buffer/shutdown
        {
          this.shutdown ();
          out = $rh.createReply();

@@ -39,8 +39,8 @@ class BufferImpl extends _BufferImplBase {
 	 */
 	// implementa el metodo put()
 	public boolean put(String elemento) {
-		setNoticias(10);
-		System.out.println(maxElementos);
+//		setNoticias(10);
+//		System.out.println(maxElementos);
 		if (elementos < maxElementos) {
 			buf[elementos] = elemento;
 			elementos++;
@@ -87,6 +87,18 @@ class BufferImpl extends _BufferImplBase {
 			elemento.value = "No se puede leer hasta que no haya mensajes";
 		return false;
 	}
+	
+	public boolean readAll(org.omg.CORBA.StringHolder elemento) {
+		if (elementos > 0) {
+			for (int i = 0; i < buf.length; i++) {
+				elemento.value += buf[i];
+			}
+//			elemento.value = buf[0];
+			return true;
+		} else
+			elemento.value = "No se puede leer hasta que no haya mensajes";
+		return false;
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -117,4 +129,5 @@ class BufferImpl extends _BufferImplBase {
 		}
 		return;
 	}
+
 }

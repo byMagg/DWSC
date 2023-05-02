@@ -70,7 +70,6 @@ public class XMLDecoder {
 			}
 			return salida;
 		} catch (SAXParseException e) {
-
 			System.out.println("\nERROR!!!!: Tag mal formado");
 
 		} catch (Exception e) {
@@ -89,7 +88,6 @@ public class XMLDecoder {
 	 */
 	public static List<Mensaje> decodeXML(String xml, int flag) {
 		try {
-
 			DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			InputSource is = new InputSource();
 			is.setCharacterStream(new StringReader(xml));
@@ -127,7 +125,6 @@ public class XMLDecoder {
 			}
 			return salida;
 		} catch (SAXParseException e) {
-
 			System.out.println("\nERROR!!!!: Tag mal formado");
 
 		} catch (Exception e) {

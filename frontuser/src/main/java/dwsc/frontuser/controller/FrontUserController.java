@@ -2,7 +2,13 @@ package dwsc.frontuser.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.text.SimpleDateFormat;
+
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +25,8 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import dwsc.frontuser.model.Comment;
+import dwsc.frontuser.model.Mensaje;
+import dwsc.frontuser.model.TipoNivelInteres;
 import dwsc.frontuser.model.Track;
 
 @Controller
@@ -37,6 +45,26 @@ public class FrontUserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
+	    try {
+	        ResponseEntity<String> response = new RestTemplate().getForEntity(servletURL, String.class);
+	        String responseBody = response.getBody();
+	        ArrayList<String> mensajesTemp = new ArrayList<String>();
+	        String[] splitted = responseBody.split("Mensaje ");
+	        Collections.addAll(mensajesTemp, splitted);
+	        mensajesTemp.remove(0);
+	        for (String string : mensajesTemp) {
+	        	String trimmed = string.trim();
+	        	String clean = trimmed.substring(0, trimmed.length() - 1).trim();
+	        	mensajes.add(parseMensaje(clean.substring(1, clean.length() - 1)));
+			}
+			model.addAttribute("mensajes", mensajes);
+	        // Haz algo con el cuerpo de la respuesta
+	    } catch (RestClientException e) {
+	        e.printStackTrace();
+	    }
+	    
 		model.addAttribute("tracks", tracks);
 		model.addAttribute("field", "name");
 		
@@ -100,16 +128,32 @@ public class FrontUserController {
 		return "redirect:/tracks/" + savedComment.getTrackid();
 	}
 	
-	@GetMapping("/news")
-	public String getNews(Model model) {
-	    try {
-	        ResponseEntity<String> response = new RestTemplate().getForEntity(servletURL, String.class);
-	        String responseBody = response.getBody();
-	        System.out.println(responseBody);
-	        // Haz algo con el cuerpo de la respuesta
-	    } catch (RestClientException e) {
-	        e.printStackTrace();
-	    }
-	    return "index";
+	public static Mensaje parseMensaje(String mensajeString) {
+			String[] split = mensajeString.split(", ");
+			Date fecha = null;
+			TipoNivelInteres nivelInteres = null;
+			String descripcionCorta = null;
+			String descripcionLarga = null;
+			for (int i = 0; i < split.length; i++) {
+				String value = split[i].split("=")[1];
+				if(i == 0) {
+			        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			        try {
+			        	fecha = dateFormat.parse(value);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				} else if(i == 1) {
+				    nivelInteres = TipoNivelInteres.valueOf(value);
+				} else if(i == 2) {
+					descripcionCorta = value;
+				} else if(i == 3) {
+					descripcionLarga = value;
+				}
+			}
+
+			Mensaje mensaje = new Mensaje(fecha, nivelInteres, descripcionCorta, descripcionLarga);
+			return mensaje;
+	    
 	}
 }

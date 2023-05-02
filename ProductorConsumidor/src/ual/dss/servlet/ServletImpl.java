@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -196,23 +197,39 @@ public class ServletImpl extends HttpServlet {
 
 	}
 	
-	protected String actionGetAll(java.io.PrintWriter out) {
+	protected List<Mensaje> actionReadAll(java.io.PrintWriter out) {
+		int nelementos = -1;
 		List<Mensaje> mensajesLeidos = new ArrayList<Mensaje>();
-		mensajesLeidos = XMLDecoder.decodeXML("documentoProductorConsumidor");
-		System.out.println(mensajesLeidos.toString());
-		System.out.println("HOLA");
+		String xml = null;
 
-//        FileInputStream fileInputStream = new FileInputStream(new File(filePath));
-//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
-//        StringBuilder stringBuilder = new StringBuilder();
-//        String line;
-//        while ((line = bufferedReader.readLine()) != null) {
-//            stringBuilder.append(line);
-//        }
-//        bufferedReader.close();
-//        fileInputStream.close();
+		try {
+			getreference();
+
+			StringHolder aux = new StringHolder();
+			boolean estado = bufferImpl.readAll(aux);
+
+			if (estado) {
+				nelementos = bufferImpl.num_elementos();
+				xml = aux.value.replace("null", "");
+				String[] documentos = xml.split("</documentoProductorConsumidor>");
+				
+				for (String documento : documentos) {
+					String temp = documento + "</documentoProductorConsumidor>";
+					System.out.println(temp);
+					mensajesLeidos.addAll(XMLDecoder.decodeXML(temp, 1));
+				}
+				
+				if (aux.value.compareTo("null") == 0)
+					throw new Exception("No se ha podido leer el elemento del buffer.");
+			} else {
+				
+			}
+
+		} catch (Exception e) {
+			
+		}
 		
-		return mensajesLeidos.toString();
+		return mensajesLeidos;
 
 	}
 
@@ -232,7 +249,7 @@ public class ServletImpl extends HttpServlet {
 
 			java.io.PrintWriter out = response.getWriter();
 
-			out.println(actionGetAll(out));
+			out.println(actionReadAll(out));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
