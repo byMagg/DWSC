@@ -228,6 +228,7 @@ public class ServletImpl extends HttpServlet {
 		} catch (Exception e) {
 			
 		}
+		System.out.println(mensajesLeidos);
 		
 		return mensajesLeidos;
 
