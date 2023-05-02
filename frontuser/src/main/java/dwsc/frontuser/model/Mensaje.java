@@ -10,14 +10,14 @@ import java.util.Date;
 public class Mensaje {
 
 	/** The fecha. */
-	private Date fecha;
+	public Date fecha;
 	
 	/** The nivelInteres. */
-	private TipoNivelInteres nivelInteres;
+	public TipoNivelInteres nivelInteres;
 	
-	private String descripcionCorta;
+	public String descripcionCorta;
 	
-	private String descripcionLarga;
+	public String descripcionLarga;
 	
 	/**
 	 * Instantiates a new mensaje.

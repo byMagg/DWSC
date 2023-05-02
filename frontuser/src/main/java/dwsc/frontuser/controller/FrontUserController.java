@@ -59,6 +59,7 @@ public class FrontUserController {
 	        	String clean = trimmed.substring(0, trimmed.length() - 1).trim();
 	        	mensajes.add(parseMensaje(clean.substring(1, clean.length() - 1)));
 			}
+	        System.out.println(mensajes.toString());
 			model.addAttribute("mensajes", mensajes);
 	        // Haz algo con el cuerpo de la respuesta
 	    } catch (RestClientException e) {
@@ -80,6 +81,26 @@ public class FrontUserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
+	    try {
+	        ResponseEntity<String> response = new RestTemplate().getForEntity(servletURL, String.class);
+	        String responseBody = response.getBody();
+	        ArrayList<String> mensajesTemp = new ArrayList<String>();
+	        String[] splitted = responseBody.split("Mensaje ");
+	        Collections.addAll(mensajesTemp, splitted);
+	        mensajesTemp.remove(0);
+	        for (String string : mensajesTemp) {
+	        	String trimmed = string.trim();
+	        	String clean = trimmed.substring(0, trimmed.length() - 1).trim();
+	        	mensajes.add(parseMensaje(clean.substring(1, clean.length() - 1)));
+			}
+	        System.out.println(mensajes.toString());
+			model.addAttribute("mensajes", mensajes);
+	        // Haz algo con el cuerpo de la respuesta
+	    } catch (RestClientException e) {
+	        e.printStackTrace();
+	    }
 		model.addAttribute("tracks", tracks);
 		model.addAttribute("field", field);
 		
@@ -151,7 +172,7 @@ public class FrontUserController {
 					descripcionLarga = value;
 				}
 			}
-
+			
 			Mensaje mensaje = new Mensaje(fecha, nivelInteres, descripcionCorta, descripcionLarga);
 			return mensaje;
 	    
