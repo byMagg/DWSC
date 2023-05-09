@@ -61,7 +61,6 @@ public class FrontUserController {
 			}
 	        System.out.println(mensajes.toString());
 			model.addAttribute("mensajes", mensajes);
-	        // Haz algo con el cuerpo de la respuesta
 	    } catch (RestClientException e) {
 	        e.printStackTrace();
 	    }
@@ -97,7 +96,6 @@ public class FrontUserController {
 			}
 	        System.out.println(mensajes.toString());
 			model.addAttribute("mensajes", mensajes);
-	        // Haz algo con el cuerpo de la respuesta
 	    } catch (RestClientException e) {
 	        e.printStackTrace();
 	    }

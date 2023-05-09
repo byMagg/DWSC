@@ -61,17 +61,24 @@ public class TrackCheckController {
 
 		ObjectMapper mapper = new ObjectMapper();
 				
-		try {
-			String response = client.send(request, HttpResponse.BodyHandlers.ofString()).body();
-			JsonNode json = mapper.readTree(response);
-			if (!json.get("tracks").get("total").asText().equals("0")) {
-				cover = json.get("tracks").get("items").get(0).get("album").get("images").get(0).get("url").asText();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		return new ResponseEntity<>(cover, HttpStatus.OK);
+	    try {
+	        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+	        if (response.statusCode() == HttpStatus.OK.value()) {
+	            String responseBody = response.body();
+	            JsonNode json = mapper.readTree(responseBody);
+	            if (!json.get("tracks").get("total").asText().equals("0")) {
+	                cover = json.get("tracks").get("items").get(0).get("album").get("images").get(0).get("url").asText();
+	                return new ResponseEntity<>(cover, HttpStatus.OK);
+	            }
+	            return new ResponseEntity<>("No se encontró ninguna canción con ese nombre.", HttpStatus.NOT_FOUND);
+	        }
+	        return new ResponseEntity<>("Error al buscar la canción en Spotify.", HttpStatus.valueOf(response.statusCode()));
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        return new ResponseEntity<>("Error al procesar la respuesta de Spotify.", HttpStatus.INTERNAL_SERVER_ERROR);
+	    } catch (InterruptedException e) {
+	        e.printStackTrace();
+	        return new ResponseEntity<>("La solicitud de búsqueda a Spotify fue interrumpida.", HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
 	}
 }

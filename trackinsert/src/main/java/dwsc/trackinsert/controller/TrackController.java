@@ -37,7 +37,7 @@ public class TrackController {
 			System.out.println(name);
 			String cover = trackCheckClient.checkTrackExists(name);
 			System.out.println(cover);
-			if(cover.isBlank()) return new ResponseEntity<>(track, HttpStatus.NOT_FOUND);
+			if(cover.isBlank()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			track.setCover(cover);
 			savedTrack = trackRepo.save(track);
 
@@ -62,6 +62,8 @@ public class TrackController {
 	            track.setScore(mean);
 	            trackRepo.save(track);
 	            System.out.println(mean);
+	        } else {
+	        	throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 	        }
 
 		} catch (Exception e) {

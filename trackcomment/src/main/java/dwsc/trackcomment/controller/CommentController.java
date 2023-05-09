@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import dwsc.trackcomment.model.Comment;
 import dwsc.trackcomment.repository.CommentRepository;
@@ -24,25 +25,38 @@ public class CommentController {
 	@PostMapping("/comment")
 	public ResponseEntity<Comment> insertComment(@RequestBody Comment comment) {
 		comment.setDate(new Date());
-		commentRepo.save(comment);
-		return new ResponseEntity<>(comment, HttpStatus.OK);
+		try {
+			commentRepo.save(comment);
+			return new ResponseEntity<>(comment, HttpStatus.OK);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_GATEWAY);
+		}
 	}
 	
 	@GetMapping("/tracks/{trackid}/comments")
 	public ResponseEntity<List<Comment>> getCommentsByTrack(@PathVariable int trackid) {
 	    List<Comment> comments = commentRepo.findByTrackid(trackid);
+	    if (comments.isEmpty()) {
+	    	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
 	    return new ResponseEntity<>(comments, HttpStatus.OK);
 	}
 	
 	@GetMapping("/tracks/comments")
 	public ResponseEntity<List<Comment>> getComments() {
 	    List<Comment> comments = commentRepo.findAll();
+	    if (comments.isEmpty()) {
+	    	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
 	    return new ResponseEntity<>(comments, HttpStatus.OK);
 	}
 	
 	@GetMapping("/tracks/{trackid}/score")
 	public ResponseEntity<Double> getCommentsScore(@PathVariable int trackid) {
 	    List<Comment> comments = commentRepo.findByTrackid(trackid);
+	    if (comments.isEmpty()) {
+	    	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
 	    double mean = 0;
 	    for (Comment comment : comments) {
 			mean += comment.getScore();
